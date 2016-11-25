@@ -16,8 +16,18 @@ OS_TID t_lcd;                           /* assigned task id of task: lcd     */
 
 OS_MUT mut_GLCD;                        /* Mutex to controll GLCD access     */
 
- unsigned int ADCStat = 0;
- unsigned int ADCValue = 0;
+object player;
+OS_MUT mut_player;
+
+object opponent;
+OS_MUT mut_opponent;
+
+object ball;
+OS_MUT mut_ball;
+
+
+unsigned int ADCStat = 0;
+unsigned int ADCValue = 0;
 
 /*----------------------------------------------------------------------------
   switch LED on
@@ -148,6 +158,8 @@ __task void init (void) {
   Main: Initialize and start RTX Kernel
  *---------------------------------------------------------------------------*/
 int main (void) {
+
+  // TODO: Init player, opponent, ball and court here
 	
 	NVIC_EnableIRQ( ADC_IRQn ); 							/* Enable ADC interrupt handler  */
 	
