@@ -1,4 +1,5 @@
 #include <RTL.h>
+#include <stdio.h>
 #include "objects.h"
 #include "LPC17xx.H"
 #include "GLCD.h"
@@ -6,12 +7,11 @@
 
 void init_game(object court_net, object player, object opponent, object ball){
 	
-	
-    // Fill background
+  // Fill background
 	GLCD_Clear(Cyan);
-	GLCD_Bitmap(court_net.x,court_net.y,court_net.width,court_net.height, court_net.bitmap); // only need to draw court net once 
-	GLCD_Bitmap(opponent.x,opponent.y,opponent.width,opponent.height, opponent.bitmap);
-	GLCD_Bitmap(player.x,player.y,player.width,player.height, player.bitmap);
+	GLCD_Bitmap(court_net.x, court_net.y, court_net.width, court_net.height, court_net.bitmap); // only need to draw court net once 
+	GLCD_Bitmap(opponent.x, opponent.y, opponent.width, opponent.height, opponent.bitmap);
+	GLCD_Bitmap(player.x, player.y, player.width, player.height, player.bitmap);
   GLCD_Bitmap(ball.x, ball.y, ball.width, ball.height, ball.bitmap);
 }
 
