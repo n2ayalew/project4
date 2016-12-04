@@ -561,16 +561,16 @@ __task void opponent_tsk (void) {
 /* NOTE: Add additional initialization calls for your tasks here */
 __task void init (void) {
 
-  os_mut_init(mut_GLCD);
-  os_mut_init(mut_player);
-  os_mut_init(mut_opponent);
-  os_mut_init(mut_curr_score);
-  os_mut_init(mut_ball);
+  os_mut_init(&mut_GLCD);
+  os_mut_init(&mut_player);
+  os_mut_init(&mut_opponent);
+  os_mut_init(&mut_curr_score);
+  os_mut_init(&mut_ball);
 
-  t_player = os_tsk_create(player_tsk, 0);
+  t_player   = os_tsk_create(player_tsk, 0);
   t_opponent = os_tsk_create(opponent_tsk, 0);
-  t_ball = os_tsk_create(ball_tsk, 0);
-  t_keyread = os_tsk_create(keyread,0);
+  t_ball     = os_tsk_create(ball_tsk, 0);
+  t_keyread  = os_tsk_create(keyread,0);
 
   os_tsk_delete_self ();
 }
