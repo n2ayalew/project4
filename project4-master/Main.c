@@ -96,6 +96,97 @@ unsigned int ADCStat = 0;
 unsigned int ADCValue = 0;
 uint32_t INT0_val = 0;
 
+void init_player() {
+	// Inital player values. Player must begin stationary
+  player.x = x_max - width_player_bmp; 
+  player.y = y_max - height_player_bmp;
+	player.width = width_player_bmp;
+	player.height = height_player_bmp;
+  player.dx = 0;
+  player.dy = 0;
+  player.dt = 0.6;
+  player.t =0;
+	player.bitmap = (unsigned char *)&pic_player8_bmp;
+
+  /*
+    A completly cyan coloured bitmap. This bitmap is drawn over a slime's
+    last horizontal location.
+  */ 
+  player_old_loc_x.x = player.x;
+  player_old_loc_x.y = player.y;
+  player_old_loc_x.width = 10;
+  player_old_loc_x.height = 30;
+  player_old_loc_x.bitmap = (unsigned char *)&pic_bg_height_bmp;
+
+  /*
+    This bitmap serves the same purpose as player_old_loc_x but overwrites
+    the last vertical location. These should be able to be used for both slimes,
+    otherwise we can just define another pair of bitmaps for the opponent using pic_bg_wide_bmp.
+  */ 
+  player_old_loc_y.x = player.x;
+  player_old_loc_y.y = player.y;
+  player_old_loc_y.width = 60;
+  player_old_loc_y.height = 20;
+  player_old_loc_y.bitmap = (unsigned char *)&pic_bg_wide_bmp;
+}
+
+void init_opponent() {
+	// init opponent values
+	opponent.x = x_min + 40; // add 40 so ai starts in the middle sort of
+	opponent.y = y_max - height_ai_bmp;
+	opponent.width = width_ai_bmp;
+	opponent.height = height_ai_bmp;
+  opponent.dx = 0;
+  opponent.dy = 0;
+  opponent.dt = 0.6;
+  opponent.t = 0;
+	opponent.bitmap = (unsigned char *)&pic_ai8_bmp;
+}
+
+void init_ball() {
+	/*
+    Init ball. Ball begins over players head and continues to bounce on it until player moves.
+    The ball always bounces off a surface with ball.dy = -40 unless it bounces of the top of the court
+  */ 
+	ball.x = player.x + player.width / 2 - ball.width / 2;
+	ball.y = player.y - ball.height - 20;
+	ball.width = width_ball_bmp;
+	ball.height = height_ball_bmp;
+  ball.dx = 0;
+  ball.dy = -40;
+  ball.dt = 0.9;
+  ball.t = 0;
+  ball.bitmap = (unsigned char *)&pic_ball6_bmp;
+  ball_origin = y_max - ball.height;
+  
+  // bitmap for overwritting ball's prev vertical position
+  ball_old_loc_y = ball; // Start with same values, different image
+  ball_old_loc_y.bitmap = (unsigned char *)&pic_bg_ball_bmp;
+
+  // bitmap for overwritting ball's prev horizontal position
+  ball_old_loc_x = ball_old_loc_y;
+}
+
+void reset_board() {
+	
+	// Reset slime and player positions
+	os_mut_wait(&mut_ball, 0xffff);
+	init_ball();
+  os_mut_release(&mut_ball);
+
+	os_mut_wait(&mut_player, 0xffff);
+	init_player();
+  os_mut_release(&mut_player);
+	
+	os_mut_wait(&mut_opponent, 0xffff);
+	init_opponent();
+  os_mut_release(&mut_opponent);
+
+	os_mut_wait(&mut_GLCD, 0xffff);
+ 	GLCD_Clear(Cyan);
+	GLCD_Bitmap(court_net.x, court_net.y, court_net.width, court_net.height, court_net.bitmap);
+	os_mut_release(&mut_GLCD);
+}
 
 void net_collision(object * b){
 	// check for collision with net
