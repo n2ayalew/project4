@@ -25,7 +25,6 @@ OS_TID t_kbd;                           /* assigned task id of task: keyread */
 OS_TID t_jst   ;                        /* assigned task id of task: joystick */
 OS_TID t_clock;                         /* assigned task id of task: clock   */
 OS_TID t_lcd;                           /* assigned task id of task: lcd     */
-OS_TID t_keyread;
 OS_TID t_player;                        /* assigned task id of task: player     */
 OS_TID t_opponent;                      /* assigned task id of task: opponent     */
 OS_TID t_ball;                          /* assigned task id of task: ball    */
@@ -94,7 +93,105 @@ unsigned int ADCStat = 0;
 unsigned int ADCValue = 0;
 uint32_t INT0_val = 0;
 
+// __task void adc (void);
+// __task void lcd (void);
+// __task void opponent_tsk (void);
+// __task void player_tsk (void);
+// __task void ball_tsk (void);
+// __task void init (void);
 
+void init_player() {
+	// Inital player values. Player must begin stationary
+  player.x = x_max - width_player_bmp; 
+  player.y = y_max - height_player_bmp;
+	player.width = width_player_bmp;
+	player.height = height_player_bmp;
+  player.dx = 0;
+  player.dy = 0;
+  player.dt = 0.6;
+  player.t =0;
+	player.bitmap = (unsigned char *)&pic_player8_bmp;
+
+  /*
+    A completly cyan coloured bitmap. This bitmap is drawn over a slime's
+    last horizontal location.
+  */ 
+  player_old_loc_x.x = player.x;
+  player_old_loc_x.y = player.y;
+  player_old_loc_x.width = 10;
+  player_old_loc_x.height = 30;
+  player_old_loc_x.bitmap = (unsigned char *)&pic_bg_height_bmp;
+
+  /*
+    This bitmap serves the same purpose as player_old_loc_x but overwrites
+    the last vertical location. These should be able to be used for both slimes,
+    otherwise we can just define another pair of bitmaps for the opponent using pic_bg_wide_bmp.
+  */ 
+  player_old_loc_y.x = player.x;
+  player_old_loc_y.y = player.y;
+  player_old_loc_y.width = 60;
+  player_old_loc_y.height = 20;
+  player_old_loc_y.bitmap = (unsigned char *)&pic_bg_wide_bmp;
+}
+
+void init_opponent() {
+	// init opponent values
+	opponent.x = x_min + 40; // add 40 so ai starts in the middle sort of
+	opponent.y = y_max - height_ai_bmp;
+	opponent.width = width_ai_bmp;
+	opponent.height = height_ai_bmp;
+  opponent.dx = 0;
+  opponent.dy = 0;
+  opponent.dt = 0.6;
+  opponent.t = 0;
+	opponent.bitmap = (unsigned char *)&pic_ai8_bmp;
+}
+
+void init_ball() {
+	/*
+    Init ball. Ball begins over players head and continues to bounce on it until player moves.
+    The ball always bounces off a surface with ball.dy = -40 unless it bounces of the top of the court
+  */ 
+	ball.x = player.x + player.width / 2 - ball.width / 2;
+	ball.y = player.y - ball.height - 20;
+	ball.width = width_ball_bmp;
+	ball.height = height_ball_bmp;
+  ball.dx = 0;
+  ball.dy = -40;
+  ball.dt = 0.9;
+  ball.t = 0;
+  ball.bitmap = (unsigned char *)&pic_ball6_bmp;
+  ball_origin = y_max - ball.height;
+  
+  // bitmap for overwritting ball's prev vertical position
+  ball_old_loc_y = ball; // Start with same values, different image
+  ball_old_loc_y.bitmap = (unsigned char *)&pic_bg_ball_bmp;
+
+  // bitmap for overwritting ball's prev horizontal position
+  ball_old_loc_x = ball_old_loc_y;
+}
+
+void reset_board() {
+	
+	// Reset slime and player positions
+	os_mut_wait(&mut_ball, 0xffff);
+	init_ball();
+  os_mut_release(&mut_ball);
+
+	os_mut_wait(&mut_player, 0xffff);
+	init_player();
+  os_mut_release(&mut_player);
+	
+	os_mut_wait(&mut_opponent, 0xffff);
+	init_opponent();
+  os_mut_release(&mut_opponent);
+
+	os_mut_wait(&mut_GLCD, 0xffff);
+ 	GLCD_Clear(Cyan);
+	GLCD_Bitmap(court_net.x, court_net.y, court_net.width, court_net.height, court_net.bitmap);
+	os_mut_release(&mut_GLCD);
+	
+}
 
 /*
   Axis Aligned Bounding Box Collision Detection
@@ -119,44 +216,32 @@ short detect_collision(object ball, object slime){
 
 void score_player() {
 	
-	os_mut_wait(mut_curr_score, 0xffff);
+	os_mut_wait(&mut_curr_score, 0xffff);
 	
 	if(curr_score.player == 4) {
 		// TODO: End game
 	} else {
 		(curr_score.player)++;
 		LED_On(curr_score.player);
-		// TODO: Reset screen
+		reset_board();
 	}
 	
-	os_mut_release(mut_curr_score);
+	os_mut_release(&mut_curr_score);
 }
 
 void score_opponent() {
 
-	os_mut_wait(mut_curr_score, 0xffff);
+	os_mut_wait(&mut_curr_score, 0xffff);
 	
 	if(curr_score.opponent == 4) {
 		// TODO: End game
 	} else {
 		(curr_score.opponent)++;
 		LED_On(8 - curr_score.opponent);
-		//TODO: Reset screen
+		reset_board();
 	}
 	
-	os_mut_release(mut_curr_score);
-}
-
-/*----------------------------------------------------------------------------
-  Task 2 'keyread': process key stroke from int0 push button
- *---------------------------------------------------------------------------*/
-__task void keyread (void) {
-  while (1) {                                 /* endless loop                */
-    if (INT0_Get() == 0) {                    /* if key pressed              */
-      LED_Toggle (7) ;												/* toggle eigth LED if pressed */
-    }
-    os_dly_wait (5);                          /* wait for timeout: 5 ticks   */
-  }
+	os_mut_release(&mut_curr_score);
 }
 
 /*----------------------------------------------------------------------------
@@ -172,41 +257,12 @@ __task void adc (void) {
   }
 }
 
-/*----------------------------------------------------------------------------
-  Task 5 'lcd': LCD Control  ntask
- *---------------------------------------------------------------------------*/
-__task void lcd (void) {
-
-  for (;;) {
-		os_mut_wait(mut_GLCD, 0xffff);
-		
-		os_mut_release(mut_GLCD);
-    /*os_mut_wait(mut_GLCD, 0xffff);
-    GLCD_SetBackColor(Blue);
-    GLCD_SetTextColor(White);
-    GLCD_DisplayString(0, 0, __FI, "      MTE 241        ");
-    GLCD_DisplayString(1, 0, __FI, "      RTX            ");
-    GLCD_DisplayString(2, 0, __FI, "  Project 4 Demo   ");
-    os_mut_release(mut_GLCD);
-    os_dly_wait (400);
-
-    os_mut_wait(mut_GLCD, 0xffff);
-    GLCD_SetBackColor(Blue);
-    GLCD_SetTextColor(Red);
-    GLCD_DisplayString(0, 0, __FI, "      MTE 241        ");
-    GLCD_DisplayString(1, 0, __FI, "      Other text     ");
-    GLCD_DisplayString(2, 0, __FI, "    More text        ");
-    os_mut_release(mut_GLCD);
-    os_dly_wait (400);*/
-  }
-}
-
 __task void player_tsk (void) {
   short player_jumped = 0;
   os_itv_set (update_interval);
   for (;;) {
     os_itv_wait ();
-    os_mut_wait(mut_player, 0xffff);
+    os_mut_wait(&mut_player, 0xffff);
     KBD_val = KBD_Get();
     player_moved_x = 0;
     player_old_loc_x.x = player.x;
@@ -264,18 +320,18 @@ __task void player_tsk (void) {
     }
 
     if (player_jumped){
-      os_mut_wait(mut_GLCD, 0xffff);
+      os_mut_wait(&mut_GLCD, 0xffff);
       write_obect_lcd(player_old_loc_y);
       write_obect_lcd(player);
-      os_mut_release(mut_GLCD);
+      os_mut_release(&mut_GLCD);
     }
     if (player_moved_x) {
-      os_mut_wait(mut_GLCD, 0xffff);
+      os_mut_wait(&mut_GLCD, 0xffff);
       write_obect_lcd(player_old_loc_x);
       write_obect_lcd(player);
-      os_mut_release(mut_GLCD);
+      os_mut_release(&mut_GLCD);
     }
-    os_mut_release(mut_player);
+    os_mut_release(&mut_player);
   }
 
 
@@ -286,7 +342,7 @@ __task void ball_tsk (void) {
   os_itv_set (update_interval);
   for (;;){
     os_itv_wait ();
-    os_mut_wait(mut_ball, 0xffff);
+    os_mut_wait(&mut_ball, 0xffff);
     ball_old_loc_y.x = ball.x;
     ball_old_loc_y.y = ball.y;
     ball_old_loc_x.x = ball.x;
@@ -332,23 +388,23 @@ __task void ball_tsk (void) {
     collision_detected_opponent = 0;
     if ( ball.x > 165 ){ // half court = 155
       // check for collision with player
-      os_mut_wait(mut_player, 0xffff);
+      os_mut_wait(&mut_player, 0xffff);
       if ( !collision_detected_before ){
         collision_detected = detect_collision(ball, player);
       } else if ( !detect_collision(ball, player) ) {
         collision_detected_before = 0;
       }
-      os_mut_release(mut_player);
+      os_mut_release(&mut_player);
 
       if (collision_detected){
         collision_detected_before = 1;
 
         // collision detected update ball velocity
-        os_mut_wait(mut_player, 0xffff);
+        os_mut_wait(&mut_player, 0xffff);
 
         // update velocities
         new_ball_vx = (((ball_mass - slime_mass) * ball.dx) + (2 * player.dx * ball_mass * slime_mass)) / (slime_mass + ball_mass);
-        os_mut_release(mut_player);
+        os_mut_release(&mut_player);
 
         // Find Point of Collision and update ball Location
         sx = player.x + 30;
@@ -377,15 +433,17 @@ __task void ball_tsk (void) {
         ball.t = 0;
         ball_origin = y_max - ball.height;
         ball.y = y_max - ball.height;
+				os_mut_release(&mut_ball);
 				score_opponent();
+				continue;
       }
     }
     else if ( ball.x < 155 ) {
 
       // check for collision with opponent
-      os_mut_wait(mut_opponent, 0xffff);
+      os_mut_wait(&mut_opponent, 0xffff);
       collision_detected_opponent = detect_collision(ball, opponent);
-      os_mut_release(mut_opponent);
+      os_mut_release(&mut_opponent);
 
       if (collision_detected) {
         // collision detected update ball direction
@@ -395,7 +453,9 @@ __task void ball_tsk (void) {
       // TODO: 1. Pause game (pause OS), 2.Increase player's score, 3. Restart Game
       else if (ball.y + ball.height >= y_max){  
         ball.y = y_max - ball.height;
+				os_mut_release(&mut_ball);
 				score_player();
+				continue;
       }
     }
 
@@ -419,7 +479,7 @@ __task void ball_tsk (void) {
     } 
 
     // Draw Ball
-    os_mut_wait(mut_GLCD, 0xffff);
+    os_mut_wait(&mut_GLCD, 0xffff);
     write_obect_lcd(ball_old_loc_y);
     write_obect_lcd(ball_old_loc_x);
     write_obect_lcd(ball);
@@ -430,16 +490,16 @@ __task void ball_tsk (void) {
     }
 		
     // Redraw slimes. We could change this so redraw only occurs when collision occurs
-		os_mut_wait(mut_player, 0xffff);
+		os_mut_wait(&mut_player, 0xffff);
 		write_obect_lcd(player);
-		os_mut_release(mut_player);
+		os_mut_release(&mut_player);
 
-		os_mut_wait(mut_opponent, 0xffff);
+		os_mut_wait(&mut_opponent, 0xffff);
 		write_obect_lcd(opponent);
-		os_mut_release(mut_opponent);
+		os_mut_release(&mut_opponent);
 
-    os_mut_release(mut_GLCD);
-    os_mut_release(mut_ball);
+    os_mut_release(&mut_GLCD);
+    os_mut_release(&mut_ball);
 
   }
 }
@@ -448,12 +508,11 @@ __task void opponent_tsk (void) {
    os_itv_set (update_interval);
   for(;;){
     os_itv_wait ();
-    //os_mut_wait(mut_opponent, 0xffff);
-    //os_mut_release(mut_opponent);
+    //os_mut_wait(&mut_opponent, 0xffff);
+    //os_mut_release(&mut_opponent);
   }
 
 }
-
 
 /*----------------------------------------------------------------------------
   Task 6 'init': Initialize
@@ -461,19 +520,19 @@ __task void opponent_tsk (void) {
 /* NOTE: Add additional initialization calls for your tasks here */
 __task void init (void) {
 
-  os_mut_init(mut_GLCD);
-  os_mut_init(mut_player);
-  os_mut_init(mut_opponent);
-  os_mut_init(mut_curr_score);
-  os_mut_init(mut_ball);
+  os_mut_init(&mut_GLCD);
+  os_mut_init(&mut_player);
+  os_mut_init(&mut_opponent);
+  os_mut_init(&mut_curr_score);
+  os_mut_init(&mut_ball);
 
-  t_player = os_tsk_create(player_tsk, 0);
+  t_player   = os_tsk_create(player_tsk, 0);
   t_opponent = os_tsk_create(opponent_tsk, 0);
-  t_ball = os_tsk_create(ball_tsk, 0);
-  t_keyread = os_tsk_create(keyread,0);
+  t_ball     = os_tsk_create(ball_tsk, 0);
 
   os_tsk_delete_self ();
 }
+
 
 /*----------------------------------------------------------------------------
   Main: Initialize and start RTX Kernel
@@ -494,8 +553,11 @@ int main (void) {
 
   /* 
     Inital game state is defined here. Bitmap files are included and are assinged here.
-
   */
+	
+	init_player();
+	init_opponent();
+	init_ball();
   
   // Physical limits of the court used to limit motion of player, opponent and ball
   ai_left_limit = x_min;
@@ -514,71 +576,6 @@ int main (void) {
   court_net.dx = 0;
   court_net.dy = 0;
 
-	// Inital player values. Player must begin stationary
-  player.x = x_max - width_player_bmp; 
-  player.y = y_max - height_player_bmp;
-	player.width = width_player_bmp;
-	player.height = height_player_bmp;
-  player.dx = 0;
-  player.dy = 0;
-  player.dt = 0.6;
-  player.t =0;
-	player.bitmap = (unsigned char *)&pic_player8_bmp;
-
-  /*
-    A completly cyan coloured bitmap. This bitmap is drawn over a slime's
-    last horizontal location.
-  */ 
-  player_old_loc_x.x = player.x;
-  player_old_loc_x.y = player.y;
-  player_old_loc_x.width = 10;
-  player_old_loc_x.height = 30;
-  player_old_loc_x.bitmap = (unsigned char *)&pic_bg_height_bmp;
-
-  /*
-    This bitmap serves the same purpose as player_old_loc_x but overwrites
-    the last vertical location. These should be able to be used for both slimes,
-    otherwise we can just define another pair of bitmaps for the opponent using pic_bg_wide_bmp.
-  */ 
-  player_old_loc_y.x = player.x;
-  player_old_loc_y.y = player.y;
-  player_old_loc_y.width = 60;
-  player_old_loc_y.height = 20;
-  player_old_loc_y.bitmap = (unsigned char *)&pic_bg_wide_bmp;
-	
-	// init opponent values
-	opponent.x = x_min + 40; // add 40 so ai starts in the middle sort of
-	opponent.y = y_max - height_ai_bmp;
-	opponent.width = width_ai_bmp;
-	opponent.height = height_ai_bmp;
-  opponent.dx = 0;
-  opponent.dy = 0;
-  opponent.dt = 0.6;
-  opponent.t = 0;
-	opponent.bitmap = (unsigned char *)&pic_ai8_bmp;
-	
-	/*
-    Init ball. Ball begins over players head and continues to bounce on it until player moves.
-    The ball always bounces off a surface with ball.dy = -40 unless it bounces of the top of the court
-  */ 
-	ball.x = player.x + player.width / 2 - ball.width / 2;
-	ball.y = player.y - ball.height;
-	ball.width = width_ball_bmp;
-	ball.height = height_ball_bmp;
-  ball.dx = 0;
-  ball.dy = -40;
-  ball.dt = 0.9;
-  ball.t = 0;
-  ball.bitmap = (unsigned char *)&pic_ball6_bmp;
-  ball_origin = y_max - ball.height;
-  
-  // bitmap for overwritting ball's prev vertical position
-  ball_old_loc_y = ball; // Start with same values, different image
-  ball_old_loc_y.bitmap = (unsigned char *)&pic_bg_ball_bmp;
-
-  // bitmap for overwritting ball's prev horizontal position
-  ball_old_loc_x = ball_old_loc_y;
-	
 	// Initialize score
 	curr_score.player = 0;
 	curr_score.opponent = 0;

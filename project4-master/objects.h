@@ -44,7 +44,6 @@ typedef struct {
 
 // init functions
 void init_game(object court_net, object player, object opponent, object ball);
-void init_ball(object ball);
 void init_score(score sc);
 
 
