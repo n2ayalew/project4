@@ -26,15 +26,16 @@ static const int x_min = 0;
 
 
 typedef struct {
-	unsigned int x;
-	unsigned int y;
-	unsigned int height;
-	unsigned int width;
+	int x;
+	int y;
+	int height;
+	int width;
 	int dx; 
 	int dy;
 	unsigned char * bitmap;
 	float t;
-	float dt; 
+	float dt;
+	unsigned int radius; 
 } object;
 
 typedef struct {
@@ -44,6 +45,7 @@ typedef struct {
 
 // init functions
 void init_game(object court_net, object player, object opponent, object ball);
+void init_ball(object ball);
 void init_score(score sc);
 
 
