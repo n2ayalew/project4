@@ -28,7 +28,7 @@ I (C:\Software\Keil\ARM\CMSIS\Include\core_cmInstr.h)(0x5059F73C)
 I (C:\Software\Keil\ARM\CMSIS\Include\core_cmFunc.h)(0x4FDB2F0C)
 I (C:\Software\Keil\ARM\Inc\NXP\LPC17xx\system_LPC17xx.h)(0x4F58E032)
 I (LED.h)(0x5843ADBA)
-F (.\Main.c)(0x58447500)(-c --cpu Cortex-M3 -D__RTX -D__MICROLIB -g -O3 --apcs=interwork -I. -I C:\Software\Keil\ARM\RV31\INC -I C:\Software\Keil\ARM\CMSIS\Include -I C:\Software\Keil\ARM\Inc\NXP\LPC17xx -o ".\Flash\main.o" --omf_browse ".\Flash\main.crf" --depend ".\Flash\main.d")
+F (.\Main.c)(0x58447D79)(-c --cpu Cortex-M3 -D__RTX -D__MICROLIB -g -O3 --apcs=interwork -I. -I C:\Software\Keil\ARM\RV31\INC -I C:\Software\Keil\ARM\CMSIS\Include -I C:\Software\Keil\ARM\Inc\NXP\LPC17xx -o ".\Flash\main.o" --omf_browse ".\Flash\main.crf" --depend ".\Flash\main.d")
 I (C:\Software\Keil\ARM\RV31\INC\RTL.h)(0x504DDBAC)
 I (C:\Software\Keil\ARM\ARMCC\bin\..\include\time.h)(0x4EB16D32)
 I (C:\Software\Keil\ARM\ARMCC\bin\..\include\stdio.h)(0x4EB16D36)
@@ -42,9 +42,8 @@ I (C:\Software\Keil\ARM\Inc\NXP\LPC17xx\system_LPC17xx.h)(0x4F58E032)
 I (GLCD.h)(0x5843ADBA)
 I (LED.h)(0x5843ADBA)
 I (KBD.h)(0x5843ADBA)
-I (ADC.h)(0x58444E52)
-I (objects.h)(0x58446FD8)
-I (C:\Software\Keil\ARM\ARMCC\bin\..\include\stdbool.h)(0x4EB16D38)
+I (ADC.h)(0x58447BAE)
+I (objects.h)(0x5843ADBA)
 I (GLCD_Scroll.h)(0x5843ADBA)
 I (ai8.bmp_out.c)(0x5843ADBA)
 I (ball6.bmp_out.c)(0x5843ADBA)
@@ -68,11 +67,10 @@ I (C:\Software\Keil\ARM\ARMCC\bin\..\include\stdint.h)(0x4EB16D34)
 I (C:\Software\Keil\ARM\CMSIS\Include\core_cmInstr.h)(0x5059F73C)
 I (C:\Software\Keil\ARM\CMSIS\Include\core_cmFunc.h)(0x4FDB2F0C)
 I (C:\Software\Keil\ARM\Inc\NXP\LPC17xx\system_LPC17xx.h)(0x4F58E032)
-I (ADC.h)(0x58444E52)
-F (.\objects.c)(0x58447500)(-c --cpu Cortex-M3 -D__RTX -D__MICROLIB -g -O3 --apcs=interwork -I. -I C:\Software\Keil\ARM\RV31\INC -I C:\Software\Keil\ARM\CMSIS\Include -I C:\Software\Keil\ARM\Inc\NXP\LPC17xx -o ".\Flash\objects.o" --omf_browse ".\Flash\objects.crf" --depend ".\Flash\objects.d")
+I (ADC.h)(0x58447BAE)
+F (.\objects.c)(0x58447BAE)(-c --cpu Cortex-M3 -D__RTX -D__MICROLIB -g -O3 --apcs=interwork -I. -I C:\Software\Keil\ARM\RV31\INC -I C:\Software\Keil\ARM\CMSIS\Include -I C:\Software\Keil\ARM\Inc\NXP\LPC17xx -o ".\Flash\objects.o" --omf_browse ".\Flash\objects.crf" --depend ".\Flash\objects.d")
 I (C:\Software\Keil\ARM\RV31\INC\RTL.h)(0x504DDBAC)
-I (objects.h)(0x58446FD8)
-I (C:\Software\Keil\ARM\ARMCC\bin\..\include\stdbool.h)(0x4EB16D38)
+I (objects.h)(0x5843ADBA)
 I (C:\Software\Keil\ARM\Inc\NXP\LPC17xx\LPC17xx.H)(0x4FF59B7C)
 I (C:\Software\Keil\ARM\CMSIS\Include\core_cm3.h)(0x5006C432)
 I (C:\Software\Keil\ARM\ARMCC\bin\..\include\stdint.h)(0x4EB16D34)

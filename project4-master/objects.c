@@ -17,7 +17,7 @@ void init_game(object court_net, object player, object opponent, object ball){
 
 
 void write_obect_lcd(object obj){
-    GLCD_Bitmap((unsigned int)(obj.x),(unsigned int)(obj.y),obj.width,obj.height, obj.bitmap);
+    GLCD_Bitmap(obj.x,obj.y,obj.width,obj.height, obj.bitmap);
 }
 
 

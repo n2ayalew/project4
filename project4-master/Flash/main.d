@@ -14,7 +14,6 @@
 .\Flash\main.o: KBD.h
 .\Flash\main.o: ADC.h
 .\Flash\main.o: objects.h
-.\Flash\main.o: C:\Software\Keil\ARM\ARMCC\bin\..\include\stdbool.h
 .\Flash\main.o: GLCD_Scroll.h
 .\Flash\main.o: ai8.bmp_out.c
 .\Flash\main.o: ball6.bmp_out.c

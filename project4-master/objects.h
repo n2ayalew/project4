@@ -1,7 +1,4 @@
-
-#include <stdbool.h>
-
-// Inital x and y values are kind of arbitrary and can be changed if need be
+ // Inital x and y values are kind of arbitrary and can be changed if need be
 // wide for up and down
 // height left and right
 
@@ -29,23 +26,16 @@ static const int x_min = 0;
 
 
 typedef struct {
-	float x;
-	float y;
-	int height;
-	int width;
-	float dx; 
-	float dy;
+	unsigned int x;
+	unsigned int y;
+	unsigned int height;
+	unsigned int width;
+	int dx; 
+	int dy;
 	unsigned char * bitmap;
 	float t;
 	float dt; 
 } object;
-
-// Provides modifiers to multiply the dx and dy of the ball by, to change it's velocity
-typedef struct {
-	float dx_modifier;
-	float dy_modifier;
-	bool  occured;
-} collision;
 
 typedef struct {
 	short player;
