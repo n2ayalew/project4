@@ -1,0 +1,11 @@
+.\Flash\objects.o: objects.c
+.\Flash\objects.o: C:\Software\Keil\ARM\RV31\INC\RTL.h
+.\Flash\objects.o: objects.h
+.\Flash\objects.o: C:\Software\Keil\ARM\Inc\NXP\LPC17xx\LPC17xx.H
+.\Flash\objects.o: C:\Software\Keil\ARM\CMSIS\Include\core_cm3.h
+.\Flash\objects.o: C:\Software\Keil\ARM\ARMCC\bin\..\include\stdint.h
+.\Flash\objects.o: C:\Software\Keil\ARM\CMSIS\Include\core_cmInstr.h
+.\Flash\objects.o: C:\Software\Keil\ARM\CMSIS\Include\core_cmFunc.h
+.\Flash\objects.o: C:\Software\Keil\ARM\Inc\NXP\LPC17xx\system_LPC17xx.h
+.\Flash\objects.o: GLCD.h
+.\Flash\objects.o: LED.h

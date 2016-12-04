@@ -1,0 +1,10 @@
+.\Flash\glcd_scroll.o: GLCD_Scroll.c
+.\Flash\glcd_scroll.o: C:\Software\Keil\ARM\Inc\NXP\LPC17xx\LPC17xx.h
+.\Flash\glcd_scroll.o: C:\Software\Keil\ARM\CMSIS\Include\core_cm3.h
+.\Flash\glcd_scroll.o: C:\Software\Keil\ARM\ARMCC\bin\..\include\stdint.h
+.\Flash\glcd_scroll.o: C:\Software\Keil\ARM\CMSIS\Include\core_cmInstr.h
+.\Flash\glcd_scroll.o: C:\Software\Keil\ARM\CMSIS\Include\core_cmFunc.h
+.\Flash\glcd_scroll.o: C:\Software\Keil\ARM\Inc\NXP\LPC17xx\system_LPC17xx.h
+.\Flash\glcd_scroll.o: C:\Software\Keil\ARM\ARMCC\bin\..\include\stdlib.h
+.\Flash\glcd_scroll.o: glcd.h
+.\Flash\glcd_scroll.o: glcd_scroll.h

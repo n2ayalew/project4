@@ -1,0 +1,1034 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Project:</h2>
+N:\MTE241\project4-master\project4-master\P4_demo.uvproj
+Project File Date:  12/02/2016
+
+<h2>Output:</h2>
+Build target 'LPC1768 Flash'
+linking...
+Program Size: Code=12030 RO-data=19378 RW-data=152 ZI-data=3616  
+".\Flash\Blinky.axf" - 0 Error(s), 0 Warning(s).
+Load "N:\\MTE241\\project4-master\\project4-master\\Flash\\Blinky.AXF" 
+No Algorithm found for: 00000000H - 00007B47H
+Erase skipped!
+Build target 'Simulator'
+linking...
+Program Size: Code=12030 RO-data=19378 RW-data=152 ZI-data=3616  
+".\Flash\Blinky.axf" - 0 Error(s), 0 Warning(s).
+Load "N:\\MTE241\\project4-master\\project4-master\\Flash\\Blinky.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Simulator'
+compiling Main.c...
+ADC.h(18): warning:  #1-D: last line of file ends without a newline
+Main.c(328): error:  #20: identifier "sxc" is undefined
+Target not created
+Build target 'Simulator'
+compiling Main.c...
+ADC.h(18): warning:  #1-D: last line of file ends without a newline
+linking...
+.\Flash\Blinky.axf: error: L6047U: The size of this image (35024 bytes) exceeds the maximum allowed for this version of the linker
+Target not created
+Build target 'Simulator'
+compiling Main.c...
+ADC.h(18): warning:  #1-D: last line of file ends without a newline
+linking...
+.\Flash\Blinky.axf: error: L6047U: The size of this image (35016 bytes) exceeds the maximum allowed for this version of the linker
+Target not created
+Build target 'Simulator'
+compiling Main.c...
+ADC.h(18): warning:  #1-D: last line of file ends without a newline
+Main.c(258): warning:  #550-D: variable "theta" was set but never used
+linking...
+Program Size: Code=12046 RO-data=19378 RW-data=152 ZI-data=3616  
+".\Flash\Blinky.axf" - 0 Error(s), 2 Warning(s).
+Build target 'Simulator'
+compiling Main.c...
+ADC.h(18): warning:  #1-D: last line of file ends without a newline
+linking...
+Program Size: Code=12046 RO-data=19378 RW-data=152 ZI-data=3616  
+".\Flash\Blinky.axf" - 0 Error(s), 1 Warning(s).
+Build target 'Simulator'
+compiling Main.c...
+ADC.h(18): warning:  #1-D: last line of file ends without a newline
+linking...
+.\Flash\Blinky.axf: error: L6047U: The size of this image (35024 bytes) exceeds the maximum allowed for this version of the linker
+Target not created
+Build target 'Simulator'
+compiling Main.c...
+ADC.h(18): warning:  #1-D: last line of file ends without a newline
+linking...
+.\Flash\Blinky.axf: error: L6047U: The size of this image (35024 bytes) exceeds the maximum allowed for this version of the linker
+Target not created
+Build target 'Simulator'
+compiling Main.c...
+ADC.h(18): warning:  #1-D: last line of file ends without a newline
+linking...
+.\Flash\Blinky.axf: error: L6047U: The size of this image (34720 bytes) exceeds the maximum allowed for this version of the linker
+Target not created
+Build target 'Simulator'
+compiling Main.c...
+ADC.h(18): warning:  #1-D: last line of file ends without a newline
+Main.c(253): warning:  #550-D: variable "collid_rad" was set but never used
+linking...
+Program Size: Code=12098 RO-data=19378 RW-data=152 ZI-data=3616  
+".\Flash\Blinky.axf" - 0 Error(s), 2 Warning(s).
+Build target 'Simulator'
+compiling Main.c...
+ADC.h(18): warning:  #1-D: last line of file ends without a newline
+linking...
+.\Flash\Blinky.axf: error: L6047U: The size of this image (32880 bytes) exceeds the maximum allowed for this version of the linker
+Target not created
+Build target 'Simulator'
+compiling Main.c...
+ADC.h(18): warning:  #1-D: last line of file ends without a newline
+Main.c(254): warning: C3017W: theta may be used before being set
+linking...
+Program Size: Code=12186 RO-data=19378 RW-data=152 ZI-data=3616  
+".\Flash\Blinky.axf" - 0 Error(s), 2 Warning(s).
+Build target 'Simulator'
+compiling Main.c...
+ADC.h(18): warning:  #1-D: last line of file ends without a newline
+Main.c(331): error:  #20: identifier "x" is undefined
+Main.c(331): warning:  #174-D: expression has no effect
+Target not created
+Build target 'Simulator'
+compiling Main.c...
+ADC.h(18): warning:  #1-D: last line of file ends without a newline
+Main.c(254): warning: C3017W: theta may be used before being set
+linking...
+Program Size: Code=12186 RO-data=19378 RW-data=152 ZI-data=3616  
+".\Flash\Blinky.axf" - 0 Error(s), 2 Warning(s).
+Load "N:\\MTE241\\project4-master\\project4-master\\Flash\\Blinky.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Simulator'
+compiling Main.c...
+ADC.h(18): warning:  #1-D: last line of file ends without a newline
+Main.c(254): warning: C3017W: theta may be used before being set
+linking...
+Program Size: Code=12190 RO-data=19378 RW-data=152 ZI-data=3616  
+".\Flash\Blinky.axf" - 0 Error(s), 2 Warning(s).
+Load "N:\\MTE241\\project4-master\\project4-master\\Flash\\Blinky.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Simulator'
+compiling Main.c...
+ADC.h(18): warning:  #1-D: last line of file ends without a newline
+Main.c(254): warning: C3017W: theta may be used before being set
+linking...
+Program Size: Code=12082 RO-data=19378 RW-data=152 ZI-data=3616  
+".\Flash\Blinky.axf" - 0 Error(s), 2 Warning(s).
+Load "N:\\MTE241\\project4-master\\project4-master\\Flash\\Blinky.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Simulator'
+compiling Main.c...
+ADC.h(18): warning:  #1-D: last line of file ends without a newline
+Main.c(254): warning: C3017W: theta may be used before being set
+linking...
+Program Size: Code=12082 RO-data=19378 RW-data=152 ZI-data=3616  
+".\Flash\Blinky.axf" - 0 Error(s), 2 Warning(s).
+Build target 'Simulator'
+compiling Main.c...
+ADC.h(18): warning:  #1-D: last line of file ends without a newline
+Main.c(254): warning:  #177-D: variable "theta" was declared but never referenced
+linking...
+Program Size: Code=12058 RO-data=19378 RW-data=152 ZI-data=3616  
+".\Flash\Blinky.axf" - 0 Error(s), 2 Warning(s).
+Load "N:\\MTE241\\project4-master\\project4-master\\Flash\\Blinky.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Simulator'
+compiling Main.c...
+ADC.h(18): warning:  #1-D: last line of file ends without a newline
+Main.c(323): error:  #513: a value of type "int (*)(object, object)" cannot be assigned to an entity of type "int"
+Main.c(254): warning:  #177-D: variable "theta" was declared but never referenced
+Target not created
+Build target 'Simulator'
+compiling Main.c...
+ADC.h(18): warning:  #1-D: last line of file ends without a newline
+Main.c(322): error:  #513: a value of type "float (*)(object, object)" cannot be assigned to an entity of type "float"
+Target not created
+Build target 'Simulator'
+compiling Main.c...
+ADC.h(18): warning:  #1-D: last line of file ends without a newline
+Main.c(299): error:  #75: operand of "*" must be a pointer
+Main.c(322): error:  #513: a value of type "float (*)(object, object)" cannot be assigned to an entity of type "float"
+Target not created
+Build target 'Simulator'
+compiling Main.c...
+ADC.h(18): warning:  #1-D: last line of file ends without a newline
+Main.c(322): error:  #513: a value of type "float (*)(object, object)" cannot be assigned to an entity of type "float"
+Target not created
+Build target 'Simulator'
+compiling Main.c...
+ADC.h(18): warning:  #1-D: last line of file ends without a newline
+Main.c(322): error:  #513: a value of type "short (*)(object, object)" cannot be assigned to an entity of type "float"
+Target not created
+Build target 'Simulator'
+compiling Main.c...
+ADC.h(18): warning:  #1-D: last line of file ends without a newline
+linking...
+Program Size: Code=12346 RO-data=19378 RW-data=152 ZI-data=3616  
+".\Flash\Blinky.axf" - 0 Error(s), 1 Warning(s).
+Load "N:\\MTE241\\project4-master\\project4-master\\Flash\\Blinky.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Simulator'
+compiling Main.c...
+ADC.h(18): warning:  #1-D: last line of file ends without a newline
+linking...
+Program Size: Code=12406 RO-data=19378 RW-data=152 ZI-data=3616  
+".\Flash\Blinky.axf" - 0 Error(s), 1 Warning(s).
+Load "N:\\MTE241\\project4-master\\project4-master\\Flash\\Blinky.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Simulator'
+compiling Main.c...
+ADC.h(18): warning:  #1-D: last line of file ends without a newline
+Main.c(252): warning:  #177-D: variable "ball_rad" was declared but never referenced
+Main.c(253): warning:  #177-D: variable "bcx" was declared but never referenced
+Main.c(253): warning:  #177-D: variable "bcy" was declared but never referenced
+Main.c(253): warning:  #177-D: variable "scy" was declared but never referenced
+Main.c(253): warning:  #177-D: variable "scx" was declared but never referenced
+Main.c(253): warning:  #177-D: variable "collid_rad" was declared but never referenced
+linking...
+Program Size: Code=11962 RO-data=19378 RW-data=152 ZI-data=3616  
+".\Flash\Blinky.axf" - 0 Error(s), 7 Warning(s).
+Load "N:\\MTE241\\project4-master\\project4-master\\Flash\\Blinky.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Simulator'
+compiling Main.c...
+ADC.h(18): warning:  #1-D: last line of file ends without a newline
+linking...
+Program Size: Code=12318 RO-data=19378 RW-data=152 ZI-data=3616  
+".\Flash\Blinky.axf" - 0 Error(s), 1 Warning(s).
+Load "N:\\MTE241\\project4-master\\project4-master\\Flash\\Blinky.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Simulator'
+compiling Main.c...
+ADC.h(18): warning:  #1-D: last line of file ends without a newline
+linking...
+Program Size: Code=12366 RO-data=19378 RW-data=152 ZI-data=3616  
+".\Flash\Blinky.axf" - 0 Error(s), 1 Warning(s).
+Load "N:\\MTE241\\project4-master\\project4-master\\Flash\\Blinky.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Simulator'
+compiling Main.c...
+ADC.h(18): warning:  #1-D: last line of file ends without a newline
+linking...
+Program Size: Code=12418 RO-data=19378 RW-data=152 ZI-data=3616  
+".\Flash\Blinky.axf" - 0 Error(s), 1 Warning(s).
+Load "N:\\MTE241\\project4-master\\project4-master\\Flash\\Blinky.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Simulator'
+compiling Main.c...
+ADC.h(18): warning:  #1-D: last line of file ends without a newline
+linking...
+Program Size: Code=12434 RO-data=19378 RW-data=152 ZI-data=3616  
+".\Flash\Blinky.axf" - 0 Error(s), 1 Warning(s).
+Build target 'Simulator'
+linking...
+Program Size: Code=12434 RO-data=19378 RW-data=152 ZI-data=3616  
+".\Flash\Blinky.axf" - 0 Error(s), 0 Warning(s).
+Load "N:\\MTE241\\project4-master\\project4-master\\Flash\\Blinky.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Simulator'
+compiling Main.c...
+ADC.h(18): warning:  #1-D: last line of file ends without a newline
+linking...
+Program Size: Code=12422 RO-data=19378 RW-data=152 ZI-data=3616  
+".\Flash\Blinky.axf" - 0 Error(s), 1 Warning(s).
+Load "N:\\MTE241\\project4-master\\project4-master\\Flash\\Blinky.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Simulator'
+compiling Main.c...
+ADC.h(18): warning:  #1-D: last line of file ends without a newline
+linking...
+Program Size: Code=12414 RO-data=19378 RW-data=152 ZI-data=3616  
+".\Flash\Blinky.axf" - 0 Error(s), 1 Warning(s).
+Load "N:\\MTE241\\project4-master\\project4-master\\Flash\\Blinky.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Simulator'
+compiling Main.c...
+ADC.h(18): warning:  #1-D: last line of file ends without a newline
+linking...
+Program Size: Code=12434 RO-data=19378 RW-data=152 ZI-data=3616  
+".\Flash\Blinky.axf" - 0 Error(s), 1 Warning(s).
+Load "N:\\MTE241\\project4-master\\project4-master\\Flash\\Blinky.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Simulator'
+compiling Main.c...
+ADC.h(18): warning:  #1-D: last line of file ends without a newline
+linking...
+Program Size: Code=12522 RO-data=19378 RW-data=152 ZI-data=3616  
+".\Flash\Blinky.axf" - 0 Error(s), 1 Warning(s).
+Load "N:\\MTE241\\project4-master\\project4-master\\Flash\\Blinky.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Rebuild target 'Simulator'
+assembling startup_LPC17xx.s...
+compiling system_LPC17xx.c...
+compiling RTX_Conf_CM.c...
+compiling GLCD_SPI_LPC1700.c...
+compiling LED.c...
+compiling Main.c...
+ADC.h(18): warning:  #1-D: last line of file ends without a newline
+Main.c(251): warning:  #177-D: variable "reversed" was declared but never referenced
+compiling KBD.c...
+compiling ADC.c...
+ADC.h(18): warning:  #1-D: last line of file ends without a newline
+compiling objects.c...
+objects.c(35): warning:  #1-D: last line of file ends without a newline
+compiling Retarget.c...
+compiling GLCD_Scroll.c...
+linking...
+Program Size: Code=12646 RO-data=19378 RW-data=156 ZI-data=3612  
+".\Flash\Blinky.axf" - 0 Error(s), 4 Warning(s).
+Load "N:\\MTE241\\project4-master\\project4-master\\Flash\\Blinky.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Simulator'
+compiling Main.c...
+ADC.h(18): warning:  #1-D: last line of file ends without a newline
+Main.c(246): warning:  #177-D: variable "new_ball_vy" was declared but never referenced
+Main.c(248): warning:  #177-D: variable "reversed" was declared but never referenced
+linking...
+Program Size: Code=13026 RO-data=19378 RW-data=152 ZI-data=3616  
+".\Flash\Blinky.axf" - 0 Error(s), 3 Warning(s).
+Build target 'Simulator'
+compiling Main.c...
+ADC.h(18): warning:  #1-D: last line of file ends without a newline
+Main.c(246): warning:  #177-D: variable "new_ball_vy" was declared but never referenced
+Main.c(248): warning:  #177-D: variable "reversed" was declared but never referenced
+linking...
+Program Size: Code=13030 RO-data=19378 RW-data=152 ZI-data=3616  
+".\Flash\Blinky.axf" - 0 Error(s), 3 Warning(s).
+Load "N:\\MTE241\\project4-master\\project4-master\\Flash\\Blinky.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Simulator'
+compiling Main.c...
+ADC.h(18): warning:  #1-D: last line of file ends without a newline
+Main.c(246): warning:  #177-D: variable "new_ball_vy" was declared but never referenced
+Main.c(248): warning:  #177-D: variable "reversed" was declared but never referenced
+linking...
+Program Size: Code=13026 RO-data=19378 RW-data=152 ZI-data=3616  
+".\Flash\Blinky.axf" - 0 Error(s), 3 Warning(s).
+Load "N:\\MTE241\\project4-master\\project4-master\\Flash\\Blinky.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Simulator'
+compiling Main.c...
+ADC.h(18): warning:  #1-D: last line of file ends without a newline
+Main.c(247): warning:  #177-D: variable "new_ball_vy" was declared but never referenced
+Main.c(249): warning:  #177-D: variable "reversed" was declared but never referenced
+linking...
+Program Size: Code=13010 RO-data=19378 RW-data=152 ZI-data=3616  
+".\Flash\Blinky.axf" - 0 Error(s), 3 Warning(s).
+Load "N:\\MTE241\\project4-master\\project4-master\\Flash\\Blinky.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Simulator'
+compiling Main.c...
+ADC.h(18): warning:  #1-D: last line of file ends without a newline
+Main.c(194): error:  #29: expected an expression
+Main.c(246): warning:  #177-D: variable "new_ball_vy" was declared but never referenced
+Main.c(248): warning:  #177-D: variable "reversed" was declared but never referenced
+Target not created
+Build target 'Simulator'
+compiling Main.c...
+ADC.h(18): warning:  #1-D: last line of file ends without a newline
+Main.c(246): warning:  #177-D: variable "new_ball_vy" was declared but never referenced
+Main.c(248): warning:  #177-D: variable "reversed" was declared but never referenced
+linking...
+Program Size: Code=12686 RO-data=19378 RW-data=152 ZI-data=3616  
+".\Flash\Blinky.axf" - 0 Error(s), 3 Warning(s).
+Load "N:\\MTE241\\project4-master\\project4-master\\Flash\\Blinky.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Simulator'
+compiling Main.c...
+ADC.h(18): warning:  #1-D: last line of file ends without a newline
+Main.c(246): warning:  #177-D: variable "new_ball_vy" was declared but never referenced
+Main.c(248): warning:  #177-D: variable "reversed" was declared but never referenced
+linking...
+Program Size: Code=12642 RO-data=19378 RW-data=152 ZI-data=3616  
+".\Flash\Blinky.axf" - 0 Error(s), 3 Warning(s).
+Build target 'Simulator'
+compiling Main.c...
+ADC.h(18): warning:  #1-D: last line of file ends without a newline
+Main.c(246): warning:  #177-D: variable "new_ball_vy" was declared but never referenced
+Main.c(248): warning:  #177-D: variable "reversed" was declared but never referenced
+linking...
+Program Size: Code=12642 RO-data=19378 RW-data=152 ZI-data=3616  
+".\Flash\Blinky.axf" - 0 Error(s), 3 Warning(s).
+Load "N:\\MTE241\\project4-master\\project4-master\\Flash\\Blinky.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Simulator'
+compiling Main.c...
+ADC.h(18): warning:  #1-D: last line of file ends without a newline
+Main.c(403): error:  #268: declaration may not appear after executable statement in block
+Main.c(245): warning:  #550-D: variable "new_ball_vx" was set but never used
+Main.c(247): warning:  #177-D: variable "reversed" was declared but never referenced
+Main.c(249): warning:  #177-D: variable "ball_rad" was declared but never referenced
+Main.c(250): warning:  #177-D: variable "bcx" was declared but never referenced
+Main.c(250): warning:  #177-D: variable "bcy" was declared but never referenced
+Main.c(250): warning:  #177-D: variable "scy" was declared but never referenced
+Main.c(250): warning:  #177-D: variable "scx" was declared but never referenced
+Main.c(250): warning:  #177-D: variable "collid_rad" was declared but never referenced
+Main.c(403): error:  #67: expected a "}"
+Target not created
+Build target 'Simulator'
+compiling Main.c...
+ADC.h(18): warning:  #1-D: last line of file ends without a newline
+Main.c(245): warning:  #550-D: variable "new_ball_vx" was set but never used
+Main.c(247): warning:  #177-D: variable "reversed" was declared but never referenced
+Main.c(249): warning:  #177-D: variable "ball_rad" was declared but never referenced
+Main.c(250): warning:  #177-D: variable "bcx" was declared but never referenced
+Main.c(250): warning:  #177-D: variable "bcy" was declared but never referenced
+Main.c(250): warning:  #177-D: variable "scy" was declared but never referenced
+Main.c(250): warning:  #177-D: variable "scx" was declared but never referenced
+Main.c(250): warning:  #177-D: variable "collid_rad" was declared but never referenced
+linking...
+Program Size: Code=12110 RO-data=19378 RW-data=152 ZI-data=3616  
+".\Flash\Blinky.axf" - 0 Error(s), 9 Warning(s).
+Build target 'Simulator'
+compiling Main.c...
+ADC.h(18): warning:  #1-D: last line of file ends without a newline
+Main.c(245): warning:  #550-D: variable "new_ball_vx" was set but never used
+Main.c(247): warning:  #177-D: variable "reversed" was declared but never referenced
+Main.c(249): warning:  #177-D: variable "ball_rad" was declared but never referenced
+Main.c(250): warning:  #177-D: variable "bcx" was declared but never referenced
+Main.c(250): warning:  #177-D: variable "bcy" was declared but never referenced
+Main.c(250): warning:  #177-D: variable "scy" was declared but never referenced
+Main.c(250): warning:  #177-D: variable "scx" was declared but never referenced
+Main.c(250): warning:  #177-D: variable "collid_rad" was declared but never referenced
+linking...
+Program Size: Code=12110 RO-data=19378 RW-data=152 ZI-data=3616  
+".\Flash\Blinky.axf" - 0 Error(s), 9 Warning(s).
+Load "N:\\MTE241\\project4-master\\project4-master\\Flash\\Blinky.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Simulator'
+compiling Main.c...
+ADC.h(18): warning:  #1-D: last line of file ends without a newline
+Main.c(247): warning:  #550-D: variable "new_ball_vx" was set but never used
+Main.c(249): warning:  #177-D: variable "reversed" was declared but never referenced
+Main.c(251): warning:  #177-D: variable "ball_rad" was declared but never referenced
+Main.c(252): warning:  #177-D: variable "bcx" was declared but never referenced
+Main.c(252): warning:  #177-D: variable "bcy" was declared but never referenced
+Main.c(252): warning:  #177-D: variable "scy" was declared but never referenced
+Main.c(252): warning:  #177-D: variable "scx" was declared but never referenced
+Main.c(252): warning:  #177-D: variable "collid_rad" was declared but never referenced
+linking...
+Program Size: Code=12094 RO-data=19378 RW-data=152 ZI-data=3616  
+".\Flash\Blinky.axf" - 0 Error(s), 9 Warning(s).
+Load "N:\\MTE241\\project4-master\\project4-master\\Flash\\Blinky.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Simulator'
+compiling Main.c...
+ADC.h(18): warning:  #1-D: last line of file ends without a newline
+Main.c(247): warning:  #550-D: variable "new_ball_vx" was set but never used
+Main.c(249): warning:  #177-D: variable "reversed" was declared but never referenced
+Main.c(251): warning:  #177-D: variable "ball_rad" was declared but never referenced
+Main.c(252): warning:  #177-D: variable "bcx" was declared but never referenced
+Main.c(252): warning:  #177-D: variable "bcy" was declared but never referenced
+Main.c(252): warning:  #177-D: variable "scy" was declared but never referenced
+Main.c(252): warning:  #177-D: variable "scx" was declared but never referenced
+Main.c(252): warning:  #177-D: variable "collid_rad" was declared but never referenced
+linking...
+Program Size: Code=12102 RO-data=19378 RW-data=152 ZI-data=3616  
+".\Flash\Blinky.axf" - 0 Error(s), 9 Warning(s).
+Load "N:\\MTE241\\project4-master\\project4-master\\Flash\\Blinky.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Simulator'
+compiling Main.c...
+ADC.h(18): warning:  #1-D: last line of file ends without a newline
+Main.c(247): warning:  #550-D: variable "new_ball_vx" was set but never used
+Main.c(249): warning:  #177-D: variable "reversed" was declared but never referenced
+Main.c(252): warning:  #550-D: variable "bcx" was set but never used
+Main.c(252): warning:  #550-D: variable "bcy" was set but never used
+Main.c(252): warning:  #550-D: variable "scy" was set but never used
+Main.c(252): warning:  #550-D: variable "scx" was set but never used
+Main.c(252): warning:  #177-D: variable "collid_rad" was declared but never referenced
+linking...
+Program Size: Code=12102 RO-data=19378 RW-data=152 ZI-data=3616  
+".\Flash\Blinky.axf" - 0 Error(s), 8 Warning(s).
+Load "N:\\MTE241\\project4-master\\project4-master\\Flash\\Blinky.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Simulator'
+compiling Main.c...
+ADC.h(18): warning:  #1-D: last line of file ends without a newline
+Main.c(247): warning:  #550-D: variable "new_ball_vx" was set but never used
+Main.c(249): warning:  #177-D: variable "reversed" was declared but never referenced
+Main.c(252): warning:  #550-D: variable "collid_rad" was set but never used
+linking...
+Program Size: Code=12246 RO-data=19378 RW-data=152 ZI-data=3616  
+".\Flash\Blinky.axf" - 0 Error(s), 4 Warning(s).
+Load "N:\\MTE241\\project4-master\\project4-master\\Flash\\Blinky.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Simulator'
+compiling Main.c...
+ADC.h(18): warning:  #1-D: last line of file ends without a newline
+Main.c(247): warning:  #550-D: variable "new_ball_vx" was set but never used
+Main.c(249): warning:  #177-D: variable "reversed" was declared but never referenced
+Main.c(252): warning:  #550-D: variable "bcx" was set but never used
+Main.c(252): warning:  #550-D: variable "bcy" was set but never used
+Main.c(252): warning:  #550-D: variable "scy" was set but never used
+Main.c(252): warning:  #550-D: variable "scx" was set but never used
+Main.c(252): warning:  #177-D: variable "collid_rad" was declared but never referenced
+linking...
+Program Size: Code=12102 RO-data=19378 RW-data=152 ZI-data=3616  
+".\Flash\Blinky.axf" - 0 Error(s), 8 Warning(s).
+Load "N:\\MTE241\\project4-master\\project4-master\\Flash\\Blinky.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Simulator'
+compiling Main.c...
+ADC.h(18): warning:  #1-D: last line of file ends without a newline
+Main.c(247): warning:  #550-D: variable "new_ball_vx" was set but never used
+Main.c(249): warning:  #177-D: variable "reversed" was declared but never referenced
+Main.c(252): warning:  #550-D: variable "bcx" was set but never used
+Main.c(252): warning:  #550-D: variable "scx" was set but never used
+Main.c(252): warning:  #177-D: variable "collid_rad" was declared but never referenced
+linking...
+Program Size: Code=12398 RO-data=19378 RW-data=156 ZI-data=3612  
+".\Flash\Blinky.axf" - 0 Error(s), 6 Warning(s).
+Load "N:\\MTE241\\project4-master\\project4-master\\Flash\\Blinky.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Simulator'
+compiling Main.c...
+ADC.h(18): warning:  #1-D: last line of file ends without a newline
+Main.c(247): warning:  #550-D: variable "new_ball_vx" was set but never used
+Main.c(249): warning:  #177-D: variable "reversed" was declared but never referenced
+Main.c(252): warning:  #550-D: variable "bcx" was set but never used
+Main.c(252): warning:  #550-D: variable "scx" was set but never used
+Main.c(252): warning:  #177-D: variable "collid_rad" was declared but never referenced
+linking...
+Program Size: Code=12398 RO-data=19378 RW-data=156 ZI-data=3612  
+".\Flash\Blinky.axf" - 0 Error(s), 6 Warning(s).
+Build target 'Simulator'
+linking...
+Program Size: Code=12398 RO-data=19378 RW-data=156 ZI-data=3612  
+".\Flash\Blinky.axf" - 0 Error(s), 0 Warning(s).
+Load "N:\\MTE241\\project4-master\\project4-master\\Flash\\Blinky.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Simulator'
+compiling Main.c...
+ADC.h(18): warning:  #1-D: last line of file ends without a newline
+Main.c(247): warning:  #550-D: variable "new_ball_vx" was set but never used
+Main.c(249): warning:  #177-D: variable "reversed" was declared but never referenced
+Main.c(252): warning:  #550-D: variable "bcx" was set but never used
+Main.c(252): warning:  #550-D: variable "scx" was set but never used
+Main.c(252): warning:  #177-D: variable "collid_rad" was declared but never referenced
+linking...
+Program Size: Code=12422 RO-data=19378 RW-data=156 ZI-data=3612  
+".\Flash\Blinky.axf" - 0 Error(s), 6 Warning(s).
+Load "N:\\MTE241\\project4-master\\project4-master\\Flash\\Blinky.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Simulator'
+compiling Main.c...
+ADC.h(18): warning:  #1-D: last line of file ends without a newline
+Main.c(247): warning:  #550-D: variable "new_ball_vx" was set but never used
+Main.c(249): warning:  #177-D: variable "reversed" was declared but never referenced
+Main.c(252): warning:  #550-D: variable "bcx" was set but never used
+Main.c(252): warning:  #550-D: variable "scx" was set but never used
+Main.c(252): warning:  #177-D: variable "collid_rad" was declared but never referenced
+linking...
+Program Size: Code=12406 RO-data=19378 RW-data=156 ZI-data=3612  
+".\Flash\Blinky.axf" - 0 Error(s), 6 Warning(s).
+Build target 'Simulator'
+compiling Main.c...
+ADC.h(18): warning:  #1-D: last line of file ends without a newline
+Main.c(247): warning:  #550-D: variable "new_ball_vx" was set but never used
+Main.c(249): warning:  #177-D: variable "reversed" was declared but never referenced
+Main.c(252): warning:  #550-D: variable "bcx" was set but never used
+Main.c(252): warning:  #550-D: variable "scx" was set but never used
+Main.c(252): warning:  #177-D: variable "collid_rad" was declared but never referenced
+linking...
+Program Size: Code=12390 RO-data=19378 RW-data=152 ZI-data=3616  
+".\Flash\Blinky.axf" - 0 Error(s), 6 Warning(s).
+Load "N:\\MTE241\\project4-master\\project4-master\\Flash\\Blinky.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Simulator'
+compiling Main.c...
+ADC.h(18): warning:  #1-D: last line of file ends without a newline
+Main.c(247): warning:  #550-D: variable "new_ball_vx" was set but never used
+Main.c(249): warning:  #177-D: variable "reversed" was declared but never referenced
+Main.c(252): warning:  #550-D: variable "bcx" was set but never used
+Main.c(252): warning:  #550-D: variable "bcy" was set but never used
+Main.c(252): warning:  #550-D: variable "scy" was set but never used
+Main.c(252): warning:  #550-D: variable "scx" was set but never used
+Main.c(252): warning:  #177-D: variable "collid_rad" was declared but never referenced
+linking...
+Program Size: Code=12102 RO-data=19378 RW-data=152 ZI-data=3616  
+".\Flash\Blinky.axf" - 0 Error(s), 8 Warning(s).
+Load "N:\\MTE241\\project4-master\\project4-master\\Flash\\Blinky.AXF" 
+Erase Done.
+Programming Done.
+Verify Failed!
+Cannot access Memory
+Build target 'Simulator'
+compiling Main.c...
+ADC.h(18): warning:  #1-D: last line of file ends without a newline
+Main.c(247): warning:  #550-D: variable "new_ball_vx" was set but never used
+Main.c(249): warning:  #177-D: variable "reversed" was declared but never referenced
+Main.c(252): warning:  #550-D: variable "bcx" was set but never used
+Main.c(252): warning:  #550-D: variable "scx" was set but never used
+Main.c(252): warning:  #177-D: variable "collid_rad" was declared but never referenced
+linking...
+Program Size: Code=12326 RO-data=19378 RW-data=152 ZI-data=3616  
+".\Flash\Blinky.axf" - 0 Error(s), 6 Warning(s).
+Load "N:\\MTE241\\project4-master\\project4-master\\Flash\\Blinky.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Simulator'
+compiling Main.c...
+ADC.h(18): warning:  #1-D: last line of file ends without a newline
+Main.c(247): warning:  #550-D: variable "new_ball_vx" was set but never used
+Main.c(249): warning:  #177-D: variable "reversed" was declared but never referenced
+Main.c(252): warning:  #550-D: variable "bcx" was set but never used
+Main.c(252): warning:  #550-D: variable "scx" was set but never used
+Main.c(252): warning:  #177-D: variable "collid_rad" was declared but never referenced
+linking...
+Program Size: Code=12346 RO-data=19378 RW-data=152 ZI-data=3616  
+".\Flash\Blinky.axf" - 0 Error(s), 6 Warning(s).
+Build target 'Simulator'
+compiling Main.c...
+ADC.h(18): warning:  #1-D: last line of file ends without a newline
+Main.c(247): warning:  #550-D: variable "new_ball_vx" was set but never used
+Main.c(249): warning:  #177-D: variable "reversed" was declared but never referenced
+Main.c(252): warning:  #550-D: variable "bcx" was set but never used
+Main.c(252): warning:  #550-D: variable "scx" was set but never used
+Main.c(252): warning:  #177-D: variable "collid_rad" was declared but never referenced
+linking...
+Program Size: Code=12154 RO-data=19378 RW-data=152 ZI-data=3616  
+".\Flash\Blinky.axf" - 0 Error(s), 6 Warning(s).
+Load "N:\\MTE241\\project4-master\\project4-master\\Flash\\Blinky.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Simulator'
+compiling Main.c...
+ADC.h(18): warning:  #1-D: last line of file ends without a newline
+Main.c(247): warning:  #550-D: variable "new_ball_vx" was set but never used
+Main.c(249): warning:  #177-D: variable "reversed" was declared but never referenced
+Main.c(252): warning:  #550-D: variable "bcx" was set but never used
+Main.c(252): warning:  #550-D: variable "scx" was set but never used
+Main.c(252): warning:  #177-D: variable "collid_rad" was declared but never referenced
+linking...
+Program Size: Code=12130 RO-data=19378 RW-data=152 ZI-data=3616  
+".\Flash\Blinky.axf" - 0 Error(s), 6 Warning(s).
+Load "N:\\MTE241\\project4-master\\project4-master\\Flash\\Blinky.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Simulator'
+compiling Main.c...
+ADC.h(18): warning:  #1-D: last line of file ends without a newline
+Main.c(247): warning:  #550-D: variable "new_ball_vx" was set but never used
+Main.c(249): warning:  #177-D: variable "reversed" was declared but never referenced
+Main.c(252): warning:  #550-D: variable "bcx" was set but never used
+Main.c(252): warning:  #550-D: variable "scx" was set but never used
+Main.c(252): warning:  #177-D: variable "collid_rad" was declared but never referenced
+linking...
+Program Size: Code=12138 RO-data=19378 RW-data=152 ZI-data=3616  
+".\Flash\Blinky.axf" - 0 Error(s), 6 Warning(s).
+Load "N:\\MTE241\\project4-master\\project4-master\\Flash\\Blinky.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Load "N:\\MTE241\\project4-master\\project4-master\\Flash\\Blinky.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Simulator'
+compiling Main.c...
+ADC.h(18): warning:  #1-D: last line of file ends without a newline
+Main.c(247): warning:  #550-D: variable "new_ball_vx" was set but never used
+Main.c(249): warning:  #177-D: variable "reversed" was declared but never referenced
+Main.c(252): warning:  #550-D: variable "bcx" was set but never used
+Main.c(252): warning:  #550-D: variable "scx" was set but never used
+Main.c(252): warning:  #177-D: variable "collid_rad" was declared but never referenced
+linking...
+Program Size: Code=12118 RO-data=19378 RW-data=152 ZI-data=3616  
+".\Flash\Blinky.axf" - 0 Error(s), 6 Warning(s).
+Load "N:\\MTE241\\project4-master\\project4-master\\Flash\\Blinky.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Simulator'
+compiling Main.c...
+ADC.h(18): warning:  #1-D: last line of file ends without a newline
+Main.c(247): warning:  #550-D: variable "new_ball_vx" was set but never used
+Main.c(249): warning:  #177-D: variable "reversed" was declared but never referenced
+Main.c(252): warning:  #550-D: variable "bcx" was set but never used
+Main.c(252): warning:  #550-D: variable "bcy" was set but never used
+Main.c(252): warning:  #550-D: variable "scy" was set but never used
+Main.c(252): warning:  #550-D: variable "scx" was set but never used
+Main.c(252): warning:  #177-D: variable "collid_rad" was declared but never referenced
+linking...
+Program Size: Code=12074 RO-data=19378 RW-data=152 ZI-data=3616  
+".\Flash\Blinky.axf" - 0 Error(s), 8 Warning(s).
+Load "N:\\MTE241\\project4-master\\project4-master\\Flash\\Blinky.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Simulator'
+compiling Main.c...
+ADC.h(18): warning:  #1-D: last line of file ends without a newline
+Main.c(249): warning:  #177-D: variable "reversed" was declared but never referenced
+Main.c(252): warning:  #550-D: variable "scy" was set but never used
+Main.c(252): warning:  #550-D: variable "scx" was set but never used
+Main.c(252): warning:  #177-D: variable "collid_rad" was declared but never referenced
+Main.c(253): warning:  #177-D: variable "theta" was declared but never referenced
+linking...
+Program Size: Code=12138 RO-data=19378 RW-data=152 ZI-data=3616  
+".\Flash\Blinky.axf" - 0 Error(s), 6 Warning(s).
+Load "N:\\MTE241\\project4-master\\project4-master\\Flash\\Blinky.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Simulator'
+compiling Main.c...
+ADC.h(18): warning:  #1-D: last line of file ends without a newline
+Main.c(313): error:  #20: identifier "scx" is undefined
+Main.c(314): error:  #20: identifier "scy" is undefined
+Main.c(249): warning:  #177-D: variable "reversed" was declared but never referenced
+Target not created
+Build target 'Simulator'
+compiling Main.c...
+ADC.h(18): warning:  #1-D: last line of file ends without a newline
+Main.c(249): warning:  #177-D: variable "reversed" was declared but never referenced
+linking...
+Program Size: Code=12122 RO-data=19378 RW-data=152 ZI-data=3616  
+".\Flash\Blinky.axf" - 0 Error(s), 2 Warning(s).
+Load "N:\\MTE241\\project4-master\\project4-master\\Flash\\Blinky.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Simulator'
+compiling Main.c...
+ADC.h(18): warning:  #1-D: last line of file ends without a newline
+Main.c(249): warning:  #177-D: variable "reversed" was declared but never referenced
+Main.c(253): warning:  #177-D: variable "theta" was declared but never referenced
+linking...
+Program Size: Code=11982 RO-data=19378 RW-data=148 ZI-data=3612  
+".\Flash\Blinky.axf" - 0 Error(s), 3 Warning(s).
+Load "N:\\MTE241\\project4-master\\project4-master\\Flash\\Blinky.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Simulator'
+compiling Main.c...
+ADC.h(18): warning:  #1-D: last line of file ends without a newline
+Main.c(249): warning:  #177-D: variable "reversed" was declared but never referenced
+Main.c(253): warning:  #177-D: variable "theta" was declared but never referenced
+linking...
+Program Size: Code=11994 RO-data=19378 RW-data=148 ZI-data=3612  
+".\Flash\Blinky.axf" - 0 Error(s), 3 Warning(s).
+Load "N:\\MTE241\\project4-master\\project4-master\\Flash\\Blinky.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Simulator'
+compiling Main.c...
+ADC.h(18): warning:  #1-D: last line of file ends without a newline
+Main.c(249): warning:  #177-D: variable "reversed" was declared but never referenced
+Main.c(253): warning:  #177-D: variable "theta" was declared but never referenced
+linking...
+Program Size: Code=12206 RO-data=19378 RW-data=148 ZI-data=3612  
+".\Flash\Blinky.axf" - 0 Error(s), 3 Warning(s).
+Load "N:\\MTE241\\project4-master\\project4-master\\Flash\\Blinky.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Simulator'
+compiling Main.c...
+ADC.h(18): warning:  #1-D: last line of file ends without a newline
+Main.c(248): error:  #65: expected a ";"
+Main.c(317): error:  #20: identifier "new_ball_vx" is undefined
+Main.c(250): warning:  #177-D: variable "reversed" was declared but never referenced
+Main.c(254): warning:  #177-D: variable "theta" was declared but never referenced
+Target not created
+Load "N:\\MTE241\\project4-master\\project4-master\\Flash\\Blinky.AXF" 
+_____^
+*** error 56: cannot open file
+Build target 'Simulator'
+compiling Main.c...
+ADC.h(18): warning:  #1-D: last line of file ends without a newline
+Main.c(248): error:  #65: expected a ";"
+Main.c(317): error:  #20: identifier "new_ball_vx" is undefined
+Main.c(250): warning:  #177-D: variable "reversed" was declared but never referenced
+Main.c(254): warning:  #177-D: variable "theta" was declared but never referenced
+Target not created
+Build target 'Simulator'
+compiling Main.c...
+ADC.h(18): warning:  #1-D: last line of file ends without a newline
+Main.c(250): warning:  #177-D: variable "reversed" was declared but never referenced
+Main.c(254): warning:  #177-D: variable "theta" was declared but never referenced
+linking...
+Program Size: Code=12222 RO-data=19378 RW-data=148 ZI-data=3612  
+".\Flash\Blinky.axf" - 0 Error(s), 3 Warning(s).
+Build target 'Simulator'
+compiling Main.c...
+ADC.h(18): warning:  #1-D: last line of file ends without a newline
+Main.c(250): warning:  #177-D: variable "reversed" was declared but never referenced
+Main.c(254): warning:  #177-D: variable "theta" was declared but never referenced
+linking...
+Program Size: Code=12214 RO-data=19378 RW-data=148 ZI-data=3612  
+".\Flash\Blinky.axf" - 0 Error(s), 3 Warning(s).
+Load "N:\\MTE241\\project4-master\\project4-master\\Flash\\Blinky.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Simulator'
+compiling Main.c...
+ADC.h(18): warning:  #1-D: last line of file ends without a newline
+Main.c(250): warning:  #177-D: variable "reversed" was declared but never referenced
+linking...
+Program Size: Code=12194 RO-data=19378 RW-data=148 ZI-data=3612  
+".\Flash\Blinky.axf" - 0 Error(s), 2 Warning(s).
+Load "N:\\MTE241\\project4-master\\project4-master\\Flash\\Blinky.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Simulator'
+compiling Main.c...
+ADC.h(18): warning:  #1-D: last line of file ends without a newline
+Main.c(250): warning:  #177-D: variable "reversed" was declared but never referenced
+linking...
+Program Size: Code=12198 RO-data=19378 RW-data=148 ZI-data=3612  
+".\Flash\Blinky.axf" - 0 Error(s), 2 Warning(s).
+Load "N:\\MTE241\\project4-master\\project4-master\\Flash\\Blinky.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Simulator'
+compiling Main.c...
+ADC.h(18): warning:  #1-D: last line of file ends without a newline
+Main.c(250): warning:  #177-D: variable "reversed" was declared but never referenced
+linking...
+Program Size: Code=12186 RO-data=19378 RW-data=148 ZI-data=3612  
+".\Flash\Blinky.axf" - 0 Error(s), 2 Warning(s).
+Load "N:\\MTE241\\project4-master\\project4-master\\Flash\\Blinky.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Simulator'
+compiling Main.c...
+ADC.h(18): warning:  #1-D: last line of file ends without a newline
+Main.c(250): warning:  #177-D: variable "reversed" was declared but never referenced
+linking...
+Program Size: Code=12078 RO-data=19378 RW-data=148 ZI-data=3612  
+".\Flash\Blinky.axf" - 0 Error(s), 2 Warning(s).
+Load "N:\\MTE241\\project4-master\\project4-master\\Flash\\Blinky.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Simulator'
+compiling Main.c...
+ADC.h(18): warning:  #1-D: last line of file ends without a newline
+Main.c(250): warning:  #177-D: variable "reversed" was declared but never referenced
+compiling objects.c...
+objects.c(35): warning:  #1-D: last line of file ends without a newline
+linking...
+Program Size: Code=12094 RO-data=19378 RW-data=148 ZI-data=3612  
+".\Flash\Blinky.axf" - 0 Error(s), 3 Warning(s).
+Rebuild target 'Simulator'
+assembling startup_LPC17xx.s...
+compiling system_LPC17xx.c...
+compiling RTX_Conf_CM.c...
+compiling GLCD_SPI_LPC1700.c...
+compiling LED.c...
+compiling Main.c...
+ADC.h(18): warning:  #1-D: last line of file ends without a newline
+Main.c(250): warning:  #177-D: variable "reversed" was declared but never referenced
+compiling KBD.c...
+compiling ADC.c...
+ADC.h(18): warning:  #1-D: last line of file ends without a newline
+compiling objects.c...
+objects.c(35): warning:  #1-D: last line of file ends without a newline
+compiling Retarget.c...
+compiling GLCD_Scroll.c...
+linking...
+Program Size: Code=12094 RO-data=19378 RW-data=148 ZI-data=3612  
+".\Flash\Blinky.axf" - 0 Error(s), 4 Warning(s).
+Load "N:\\MTE241\\project4-master\\project4-master\\Flash\\Blinky.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Simulator'
+compiling Main.c...
+ADC.h(18): warning:  #1-D: last line of file ends without a newline
+Main.c(251): warning:  #177-D: variable "reversed" was declared but never referenced
+linking...
+Program Size: Code=12102 RO-data=19378 RW-data=180 ZI-data=3612  
+".\Flash\Blinky.axf" - 0 Error(s), 2 Warning(s).
+Load "N:\\MTE241\\project4-master\\project4-master\\Flash\\Blinky.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Simulator'
+compiling Main.c...
+ADC.h(18): warning:  #1-D: last line of file ends without a newline
+Main.c(251): warning:  #177-D: variable "reversed" was declared but never referenced
+linking...
+Program Size: Code=12198 RO-data=19378 RW-data=180 ZI-data=3612  
+".\Flash\Blinky.axf" - 0 Error(s), 2 Warning(s).
+Build target 'Simulator'
+compiling Main.c...
+ADC.h(18): warning:  #1-D: last line of file ends without a newline
+Main.c(251): warning:  #177-D: variable "reversed" was declared but never referenced
+linking...
+Program Size: Code=12214 RO-data=19378 RW-data=180 ZI-data=3612  
+".\Flash\Blinky.axf" - 0 Error(s), 2 Warning(s).
+Load "N:\\MTE241\\project4-master\\project4-master\\Flash\\Blinky.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Simulator'
+compiling Main.c...
+ADC.h(18): warning:  #1-D: last line of file ends without a newline
+Main.c(253): warning:  #177-D: variable "reversed" was declared but never referenced
+linking...
+Program Size: Code=12166 RO-data=19378 RW-data=184 ZI-data=3616  
+".\Flash\Blinky.axf" - 0 Error(s), 2 Warning(s).
+Load "N:\\MTE241\\project4-master\\project4-master\\Flash\\Blinky.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Simulator'
+compiling Main.c...
+ADC.h(18): warning:  #1-D: last line of file ends without a newline
+Main.c(253): warning:  #177-D: variable "reversed" was declared but never referenced
+linking...
+.\Flash\Blinky.axf: error: L6047U: The size of this image (33052 bytes) exceeds the maximum allowed for this version of the linker
+Target not created
+Build target 'Simulator'
+compiling Main.c...
+ADC.h(18): warning:  #1-D: last line of file ends without a newline
+Main.c(328): error:  #20: identifier "scy" is undefined
+Main.c(328): error:  #20: identifier "bcy" is undefined
+Main.c(328): error:  #20: identifier "scx" is undefined
+Main.c(328): error:  #20: identifier "bcx" is undefined
+Main.c(253): warning:  #177-D: variable "reversed" was declared but never referenced
+Target not created
+Build target 'Simulator'
+compiling Main.c...
+ADC.h(18): warning:  #1-D: last line of file ends without a newline
+Main.c(253): warning:  #177-D: variable "reversed" was declared but never referenced
+linking...
+Program Size: Code=12222 RO-data=19378 RW-data=184 ZI-data=3616  
+".\Flash\Blinky.axf" - 0 Error(s), 2 Warning(s).
+Load "N:\\MTE241\\project4-master\\project4-master\\Flash\\Blinky.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Simulator'
+compiling Main.c...
+ADC.h(18): warning:  #1-D: last line of file ends without a newline
+linking...
+Program Size: Code=12470 RO-data=19378 RW-data=196 ZI-data=3612  
+".\Flash\Blinky.axf" - 0 Error(s), 1 Warning(s).
+Load "N:\\MTE241\\project4-master\\project4-master\\Flash\\Blinky.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Simulator'
+compiling Main.c...
+ADC.h(18): warning:  #1-D: last line of file ends without a newline
+Main.c(337): error:  #20: identifier "scx" is undefined
+Main.c(337): error:  #20: identifier "bcx" is undefined
+Target not created
+Build target 'Simulator'
+compiling Main.c...
+ADC.h(18): warning:  #1-D: last line of file ends without a newline
+linking...
+Program Size: Code=12546 RO-data=19378 RW-data=200 ZI-data=3616  
+".\Flash\Blinky.axf" - 0 Error(s), 1 Warning(s).
+Load "N:\\MTE241\\project4-master\\project4-master\\Flash\\Blinky.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Simulator'
+compiling Main.c...
+ADC.h(18): warning:  #1-D: last line of file ends without a newline
+linking...
+Program Size: Code=12542 RO-data=19378 RW-data=200 ZI-data=3616  
+".\Flash\Blinky.axf" - 0 Error(s), 1 Warning(s).
+Load "N:\\MTE241\\project4-master\\project4-master\\Flash\\Blinky.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Simulator'
+compiling Main.c...
+ADC.h(18): warning:  #1-D: last line of file ends without a newline
+linking...
+Program Size: Code=12530 RO-data=19378 RW-data=200 ZI-data=3616  
+".\Flash\Blinky.axf" - 0 Error(s), 1 Warning(s).
+Load "N:\\MTE241\\project4-master\\project4-master\\Flash\\Blinky.AXF" 
+Erase Done.
+Programming Done.
+Verify OK.
+Build target 'Simulator'
+compiling Main.c...
+ADC.h(18): warning:  #1-D: last line of file ends without a newline
+linking...
+Program Size: Code=12530 RO-data=19378 RW-data=200 ZI-data=3616  
+".\Flash\Blinky.axf" - 0 Error(s), 1 Warning(s).
