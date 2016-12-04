@@ -480,6 +480,9 @@ __task void ball_tsk (void) {
         ball.t = 0;
         ball_origin = ball_max_y - ball.height;
         ball.y = ball_max_y - ball.height;
+        os_mut_release(&mut_ball);
+        score_opponent();
+        continue;
       }
     }
     else if ( ball.x < 155 ) {
@@ -496,6 +499,9 @@ __task void ball_tsk (void) {
       // check if player scored
       else if (ball.y + ball.height >= ball_max_y){  
         ball.y = ball_max_y - ball.height;
+        os_mut_release(&mut_ball);
+        score_player();
+        continue;
       }
     }
 
@@ -509,6 +515,7 @@ __task void ball_tsk (void) {
       ball.y = y_min;
       ball_origin = y_min;
       ball.dy *= -1;
+      
     } 
 
     // Draw Ball
