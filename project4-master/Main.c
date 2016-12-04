@@ -272,35 +272,6 @@ __task void adc (void) {
   }
 }
 
-/*----------------------------------------------------------------------------
-  Task 5 'lcd': LCD Control  ntask
- *---------------------------------------------------------------------------*/
-__task void lcd (void) {
-
-  for (;;) {
-		//os_mut_wait(mut_GLCD, 0xffff);
-		
-		//os_mut_release(mut_GLCD);
-    /*os_mut_wait(mut_GLCD, 0xffff);
-    GLCD_SetBackColor(Blue);
-    GLCD_SetTextColor(White);
-    GLCD_DisplayString(0, 0, __FI, "      MTE 241        ");
-    GLCD_DisplayString(1, 0, __FI, "      RTX            ");
-    GLCD_DisplayString(2, 0, __FI, "  Project 4 Demo   ");
-    os_mut_release(mut_GLCD);
-    os_dly_wait (400);
-
-    os_mut_wait(mut_GLCD, 0xffff);
-    GLCD_SetBackColor(Blue);
-    GLCD_SetTextColor(Red);
-    GLCD_DisplayString(0, 0, __FI, "      MTE 241        ");
-    GLCD_DisplayString(1, 0, __FI, "      Other text     ");
-    GLCD_DisplayString(2, 0, __FI, "    More text        ");
-    os_mut_release(mut_GLCD);
-    os_dly_wait (400);*/
-  }
-}
-
 __task void player_tsk (void) {
   os_itv_set (update_interval);
   for (;;) {
