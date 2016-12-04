@@ -97,32 +97,23 @@ unsigned int ADCValue = 0;
 uint32_t INT0_val = 0;
 
 void init_player() {
-	// Inital player values. Player must begin stationary
-  player.x = x_max - width_player_bmp; 
-  player.y = y_max - height_player_bmp;
-	player.width = width_player_bmp;
-	player.height = height_player_bmp;
+  player.x = 240; 
+  //player.x = player.x  - 60; // subtract 60 so player starts in the middle
+  player.y = 210;
+  player.width = 60;
+  player.height = 30;
   player.dx = 0;
   player.dy = 0;
   player.dt = 0.6;
-  player.t =0;
-	player.bitmap = (unsigned char *)&pic_player8_bmp;
+  player.t = 0;
+  player.bitmap = (unsigned char *)&pic_player8_bmp;
 
-  /*
-    A completly cyan coloured bitmap. This bitmap is drawn over a slime's
-    last horizontal location.
-  */ 
   player_old_loc_x.x = player.x;
   player_old_loc_x.y = player.y;
   player_old_loc_x.width = 10;
   player_old_loc_x.height = 30;
   player_old_loc_x.bitmap = (unsigned char *)&pic_bg_height_bmp;
 
-  /*
-    This bitmap serves the same purpose as player_old_loc_x but overwrites
-    the last vertical location. These should be able to be used for both slimes,
-    otherwise we can just define another pair of bitmaps for the opponent using pic_bg_wide_bmp.
-  */ 
   player_old_loc_y.x = player.x;
   player_old_loc_y.y = player.y;
   player_old_loc_y.width = 60;
@@ -131,40 +122,50 @@ void init_player() {
 }
 
 void init_opponent() {
-	// init opponent values
-	opponent.x = x_min + 40; // add 40 so ai starts in the middle sort of
-	opponent.y = y_max - height_ai_bmp;
-	opponent.width = width_ai_bmp;
-	opponent.height = height_ai_bmp;
+  // init opponent values
+  opponent.x = x_min + 40; // add 40 so ai starts in the middle sort of
+  opponent.y = y_max - height_ai_bmp;
+  opponent.width = width_ai_bmp;
+  opponent.height = height_ai_bmp;
   opponent.dx = 0;
   opponent.dy = 0;
   opponent.dt = 0.6;
   opponent.t = 0;
-	opponent.bitmap = (unsigned char *)&pic_ai8_bmp;
+  opponent.bitmap = (unsigned char *)&pic_ai8_bmp;
 }
 
 void init_ball() {
-	/*
-    Init ball. Ball begins over players head and continues to bounce on it until player moves.
-    The ball always bounces off a surface with ball.dy = -40 unless it bounces of the top of the court
-  */ 
-	ball.x = player.x + player.width / 2 - ball.width / 2;
-	ball.y = player.y - ball.height - 20;
-	ball.width = width_ball_bmp;
-	ball.height = height_ball_bmp;
+  ball.x = player.x + 20;
+  ball.y = player.y - ball.height;
+  ball.width = width_ball_bmp;
+  ball.height = height_ball_bmp;
   ball.dx = 0;
   ball.dy = -40;
   ball.dt = 0.9;
   ball.t = 0;
   ball.bitmap = (unsigned char *)&pic_ball6_bmp;
   ball_origin = y_max - ball.height;
-  
-  // bitmap for overwritting ball's prev vertical position
-  ball_old_loc_y = ball; // Start with same values, different image
+
+  ball_old_loc_y.x = 170;
+  ball_old_loc_y.y = ball.y;
+  ball_old_loc_y.width = 20;
+  ball_old_loc_y.height = 20;
+  ball_old_loc_y.dx = ball.dx;
+  ball_old_loc_y.dy = ball.dy;
+  ball_old_loc_y.dt = ball.dt;
+  ball_old_loc_y.t = ball.t;
   ball_old_loc_y.bitmap = (unsigned char *)&pic_bg_ball_bmp;
 
-  // bitmap for overwritting ball's prev horizontal position
-  ball_old_loc_x = ball_old_loc_y;
+  // We might want to make a new one with a width equal to typical ball.dx value
+  ball_old_loc_x.x = 170;
+  ball_old_loc_x.y = player.y;
+  ball_old_loc_x.width = 20;
+  ball_old_loc_x.height = 20;
+  ball_old_loc_x.dx = ball.dx;
+  ball_old_loc_x.dy = ball.dy;
+  ball_old_loc_x.dt = ball.dt;
+  ball_old_loc_x.t = ball.t;
+  ball_old_loc_x.bitmap = (unsigned char *)&pic_bg_ball_bmp;
 }
 
 void reset_board() {
@@ -582,16 +583,20 @@ int main (void) {
 	
   // TODO: Init player, opponent, ball and court here
 	
-	NVIC_EnableIRQ( ADC_IRQn ); 							/* Enable ADC interrupt handler  */
-	NVIC_EnableIRQ( EINT3_IRQn );
+  NVIC_EnableIRQ( ADC_IRQn ); 							/* Enable ADC interrupt handler  */
+  NVIC_EnableIRQ( EINT3_IRQn );
 
   LED_Init ();                              /* Initialize the LEDs           */
   GLCD_Init();                              /* Initialize the GLCD           */
-	KBD_Init ();                              /* initialize Push Button        */
-	ADC_Init ();															/* initialize the ADC            */
-	init_scroll();                            /* initialize scrolling */
+  KBD_Init ();                              /* initialize Push Button        */
+  ADC_Init ();															/* initialize the ADC            */
+  init_scroll();                            /* initialize scrolling */
+	
+  init_player();
+  init_opponent();
+  init_ball();
+	
   // Inital x and y values are kind of arbitrary and can be changed if need be
-
   ai_left_limit = x_min;
   ai_right_limit = x_court_net;
   player_left_limit = x_court_net + 10;
@@ -606,74 +611,6 @@ int main (void) {
   court_net.bitmap = (unsigned char *)&pic_court_net6_bmp;
   court_net.dx = 0;
   court_net.dy = 0;
-
-	// init player values
-  player.x = 240; 
-  //player.x = player.x  - 60; // subtract 60 so player starts in the middle
-  player.y = 210;
-  player.width = 60;
-  player.height = 30;
-  player.dx = 0;
-  player.dy = 0;
-  player.dt = 0.6;
-  player.t = 0;
-  player.bitmap = (unsigned char *)&pic_player8_bmp;
-
-  player_old_loc_x.x = player.x;
-  player_old_loc_x.y = player.y;
-  player_old_loc_x.width = 10;
-  player_old_loc_x.height = 30;
-  player_old_loc_x.bitmap = (unsigned char *)&pic_bg_height_bmp;
-
-  player_old_loc_y.x = player.x;
-  player_old_loc_y.y = player.y;
-  player_old_loc_y.width = 60;
-  player_old_loc_y.height = 20;
-  player_old_loc_y.bitmap = (unsigned char *)&pic_bg_wide_bmp;
-	
-	// init opponent values
-	opponent.x = x_min + 40; // add 40 so ai starts in the middle sort of
-	opponent.y = y_max - height_ai_bmp;
-	opponent.width = width_ai_bmp;
-	opponent.height = height_ai_bmp;
-  	opponent.dx = 0;
-  	opponent.dy = 0;
-  	opponent.dt = 0.6;
-  	opponent.t = 0;
-	opponent.bitmap = (unsigned char *)&pic_ai8_bmp;
-	
-	// init ball values
-	ball.x = player.x + 20;
-	ball.y = player.y - ball.height;
-	ball.width = width_ball_bmp;
-	ball.height = height_ball_bmp;
-  ball.dx = 0;
-  ball.dy = -40;
-  ball.dt = 0.9;
-  ball.t = 0;
-  ball.bitmap = (unsigned char *)&pic_ball6_bmp;
-  ball_origin = y_max - ball.height;
-
-  ball_old_loc_y.x = 170;
-  ball_old_loc_y.y = ball.y;
-  ball_old_loc_y.width = 20;
-  ball_old_loc_y.height = 20;
-  ball_old_loc_y.dx = ball.dx;
-  ball_old_loc_y.dy = ball.dy;
-  ball_old_loc_y.dt = ball.dt;
-  ball_old_loc_y.t = ball.t;
-  ball_old_loc_y.bitmap = (unsigned char *)&pic_bg_ball_bmp;
-
-  // We might want to make a new one with a width equal to typical ball.dx value
-  ball_old_loc_x.x = 170;
-  ball_old_loc_x.y = player.y;
-  ball_old_loc_x.width = 20;
-  ball_old_loc_x.height = 20;
-  ball_old_loc_x.dx = ball.dx;
-  ball_old_loc_x.dy = ball.dy;
-  ball_old_loc_x.dt = ball.dt;
-  ball_old_loc_x.t = ball.t;
-  ball_old_loc_x.bitmap = (unsigned char *)&pic_bg_ball_bmp;
 
   slime_mass = 3;
   ball_mass = 1;
