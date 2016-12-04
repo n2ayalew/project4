@@ -229,16 +229,34 @@ short detect_collision(object volleyball, object slime){
   }
 }
 
-/*----------------------------------------------------------------------------
-  Task 2 'keyread': process key stroke from int0 push button
- *---------------------------------------------------------------------------*/
-__task void keyread (void) {
-  while (1) {                                 /* endless loop                */
-    if (INT0_Get() == 0) {                    /* if key pressed              */
-      LED_Toggle (7) ;												/* toggle eigth LED if pressed */
-    }
-    os_dly_wait (5);                          /* wait for timeout: 5 ticks   */
-  }
+void score_player() {
+	
+	os_mut_wait(&mut_curr_score, 0xffff);
+	
+	if(curr_score.player == 4) {
+		// TODO: End game
+	} else {
+		(curr_score.player)++;
+		LED_On(curr_score.player);
+		reset_board();
+	}
+	
+	os_mut_release(&mut_curr_score);
+}
+
+void score_opponent() {
+
+	os_mut_wait(&mut_curr_score, 0xffff);
+	
+	if(curr_score.opponent == 4) {
+		// TODO: End game
+	} else {
+		(curr_score.opponent)++;
+		LED_On(8 - curr_score.opponent);
+		reset_board();
+	}
+	
+	os_mut_release(&mut_curr_score);
 }
 
 /*----------------------------------------------------------------------------
