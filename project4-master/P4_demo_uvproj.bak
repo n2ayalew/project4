@@ -348,7 +348,7 @@
             <uSurpInc>0</uSurpInc>
             <VariousControls>
               <MiscControls></MiscControls>
-              <Define></Define>
+              <Define>__RTGT_UA</Define>
               <Undefine></Undefine>
               <IncludePath>.</IncludePath>
             </VariousControls>
@@ -445,6 +445,21 @@
               <FileName>objects.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\objects.c</FilePath>
+            </File>
+            <File>
+              <FileName>Retarget.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Retarget.c</FilePath>
+            </File>
+            <File>
+              <FileName>GLCD_Scroll.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\GLCD_Scroll.c</FilePath>
+            </File>
+            <File>
+              <FileName>uart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\uart.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -899,6 +914,21 @@
               <FileName>objects.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\objects.c</FilePath>
+            </File>
+            <File>
+              <FileName>Retarget.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Retarget.c</FilePath>
+            </File>
+            <File>
+              <FileName>GLCD_Scroll.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\GLCD_Scroll.c</FilePath>
+            </File>
+            <File>
+              <FileName>uart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\uart.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1388,6 +1418,21 @@
               <FileName>objects.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\objects.c</FilePath>
+            </File>
+            <File>
+              <FileName>Retarget.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Retarget.c</FilePath>
+            </File>
+            <File>
+              <FileName>GLCD_Scroll.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\GLCD_Scroll.c</FilePath>
+            </File>
+            <File>
+              <FileName>uart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\uart.c</FilePath>
             </File>
           </Files>
         </Group>
