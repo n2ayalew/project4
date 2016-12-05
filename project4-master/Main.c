@@ -8,7 +8,6 @@
 #include "KBD.h"
 #include "ADC.h"
 #include "objects.h"
-#include "GLCD_Scroll.h"
 #include "ai8.bmp_out.c"
 #include "ball6.bmp_out.c"
 #include "player8.bmp_out.c"
@@ -48,7 +47,8 @@ OS_MUT mut_curr_score;
 
 // Game vars
 const int g = 9;
-const int ball_g = 9;
+const int base_ball_g = 9;
+int ball_g = 9;
 const U16 update_interval = 8;
 int slime_mass;
 int ball_mass;
@@ -234,8 +234,8 @@ void score_player() {
 	if(curr_score.player == 4) {
 		reset_game();
 	} else {
-		(curr_score.player)++;
 		LED_On(curr_score.player);
+		(curr_score.player)++;
 		reset_board();
 	}
 	
@@ -261,29 +261,28 @@ void score_opponent() {
   Task 3 'ADC': Read potentiometer
  *---------------------------------------------------------------------------*/
 /*Value from potentiometer is used to define the pace of the game*/
-__task void adc (void) {
+__task void adc_tsk (void) {
 	int pot_val = 0;
-	char * str = "Speed: 0000\n";
+	char str [10];
   // 0 - 4095
+  os_itv_set (update_interval * 10);
 
   for (;;) {
-    os_dly_wait (400);
-		pot_val = (LPC_ADC->ADGDR >> 4) & 0xFFF;
+    os_itv_wait ();
 		
-		os_mut_wait(&mut_player, 0xffff);
-		slime_mass = pot_val / 500;
-		opponent.x = pot_val;
-		os_mut_release(&mut_player);
+		ADC_StartCnv();
+		pot_val = ADC_GetCnv() / 1000;
 		
-		str[7]  = (pot_val / 1000) % 10;
-		str[8]  = (pot_val / 100 ) % 10;
-		str[9]  = (pot_val / 10  ) % 10;
-		str[10] = (pot_val / 1   ) % 10;
+    sprintf(str, "ACD: %d", pot_val);       /* format text for print out     */
+
 		os_mut_wait(&mut_GLCD, 0xffff);
-		GLCD_SetTextColor(Black);
-		GLCD_DisplayString(0, 0, __FI, (unsigned char *)str);
+		GLCD_SetBackColor(Cyan);
+		GLCD_SetTextColor(Red);
+		GLCD_DisplayString(0, 0, 1, (unsigned char *)str);
 		os_mut_release(&mut_GLCD);
 		
+		ball_g = base_ball_g + pot_val;
+
   }
 }
 
@@ -600,7 +599,8 @@ __task void init (void) {
   os_mut_init(&mut_ball);
 
   os_tsk_create(player_tsk, 0);
-  os_tsk_create(ball_tsk, 0);
+  os_tsk_create(ball_tsk,   0);
+  os_tsk_create(adc_tsk,    0);
 
 
   os_tsk_delete_self ();
@@ -620,7 +620,6 @@ int main (void) {
   GLCD_Init();                              /* Initialize the GLCD           */
   KBD_Init ();                              /* initialize Push Button        */
   ADC_Init ();															/* initialize the ADC            */
-  init_scroll();                            /* initialize scrolling */
 	
   init_player();
   init_opponent();

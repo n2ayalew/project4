@@ -6,48 +6,76 @@
 
 #include "LPC17xx.H"                         /* LPC17xx definitions           */
 #include "ADC.h"
+#include "GLCD.h"
 
+
+uint16_t AD_last;                            /* Last converted value          */
+uint8_t  AD_done = 0;                        /* AD conversion done flag       */
 
 /*----------------------------------------------------------------------------
-  initialize ADC Pins
+  Function that initializes ADC
  *----------------------------------------------------------------------------*/
 void ADC_Init (void) {
-	
-  LPC_SC->PCONP     |= (1 << 12);            /* enable power to GPIO & IOCON  */
 
-	//See table 81, setting GPIO Port 0.25 to AD0.2 mode
-  LPC_PINCON->PINSEL1 &= ~( 0x3 << 18 ); //clear bits
-	LPC_PINCON->PINSEL1 |=  ( 0x1 << 18 ); //set bits
-	
-	LPC_ADC->ADCR = ( 1 <<  2 ) | // Select the second channel
-									( 4 <<  8 ) | // ADC clock is 25MHz/(4+1)
-									( 0 << 24 ) | // Do not start the conversion yet
-									( 1 << 21 );  // Enable ADC
+  LPC_SC->PCONP |= ((1 << 12) | (1 << 15));  /* enable power to ADC & IOCON   */
 
-	LPC_ADC->ADINTEN = ( 1 <<  8);  //Enable interrupts for all ADC channels	
+  LPC_PINCON->PINSEL1  &= ~( 3 << 18);
+  LPC_PINCON->PINSEL1  |=  ( 1 << 18);       /* P0.25 is AD0.2                */
+  LPC_PINCON->PINMODE1 &= ~( 3 << 18);
+  LPC_PINCON->PINMODE1 |=  ( 2 << 18);       /* P0.25 no pull up/down         */
+
+  LPC_ADC->ADCR        =  ( 1 <<  2) |       /* select AD0.2 pin              */
+                          ( 4 <<  8) |       /* ADC clock is 25MHz/5          */
+                          ( 1 << 21);        /* enable ADC                    */
+
+  LPC_ADC->ADINTEN     =  ( 1 <<  8);        /* global enable interrupt       */
+
 }
 
 
 /*----------------------------------------------------------------------------
-  ADC Interrupt Handler Routine
+  start AD Conversion
  *----------------------------------------------------------------------------*/
-void ADC_IRQHandler( void ) 
-{
-	// Read ADC Status clears the interrupt condition
-	ADCStat = LPC_ADC->ADSTAT;
-	ADCValue = (LPC_ADC->ADGDR >> 4) & 0xFFF;
+void ADC_StartCnv (void) {
+  LPC_ADC->ADCR &= ~( 7 << 24);              /* stop conversion               */
+  LPC_ADC->ADCR |=  ( 1 << 24);              /* start conversion              */
 }
+
 
 /*----------------------------------------------------------------------------
-  Start ADC conversion 
+  stop AD Conversion
  *----------------------------------------------------------------------------*/
-/*NOTE: You need to write this funciton if using the ADC */
-void ADC_ConverstionStart (void )
-{           
-  LPC_ADC->ADCR |=  ( 1 << 24);               
+void ADC_StopCnv (void) {
+
+  LPC_ADC->ADCR &= ~( 7 << 24);              /* stop conversion               */
 }
 
-void ADC_ConverstionStop (void) {
-	LPC_ADC->ADCR &= ~( 7 << 24);
-}	
+
+/*----------------------------------------------------------------------------
+  get converted AD value
+ *----------------------------------------------------------------------------*/
+uint16_t ADC_GetCnv (void) {
+
+  while (!(LPC_ADC->ADGDR & ( 1UL << 31)));  /* Wait for Conversion end       */
+  AD_last = (LPC_ADC->ADGDR >> 4) & 0xFFF; /* Store converted value   */
+
+  AD_done = 1;
+
+
+  return(AD_last);
+}
+
+
+/*----------------------------------------------------------------------------
+  A/D IRQ: Executed when A/D Conversion is done
+ *----------------------------------------------------------------------------*/
+void ADC_IRQHandler(void) {
+  volatile uint32_t adstat;
+
+  adstat = LPC_ADC->ADSTAT;		             /* Read ADC clears interrupt     */
+
+  AD_last = (LPC_ADC->ADGDR >> 4) & 0xFFF; /* Store converted value   */
+
+  AD_done = 1;
+}
 
