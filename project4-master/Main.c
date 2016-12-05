@@ -18,6 +18,7 @@
 
 #define __FI        1                   /* Font index 16x24                  */
 
+
 OS_MUT mut_GLCD;                        /* Mutex to controll GLCD access     */
 
 // court vars
@@ -34,7 +35,6 @@ OS_MUT mut_player;
 // oppoenent vars
 object opponent;
 object opponent_old_loc_x;
-OS_MUT mut_opponent;
 
 // ball vars
 object ball;
@@ -69,14 +69,11 @@ int new_ball_x;
 short draw_net;
 short player_jumped = 0;
 
-//int ai_left_limit;
-//int ai_right_limit;
 int player_left_limit;
 int player_right_limit;
 int player_low_limit;
 int player_high_limit;
-//int ball_max_y = 240;
-//int ball_max_x = 320;
+
 
 // Peripherals
 unsigned int ADCStat = 0;
@@ -138,7 +135,7 @@ void init_ball() {
   ball.bitmap = (unsigned char *)&pic_ball6_bmp;
   ball_origin = y_max - ball.height;
 
-	ball_old_loc_y = ball;
+  ball_old_loc_y = ball;
   ball_old_loc_y.x = 170;
   ball_old_loc_y.width = 20;
   ball_old_loc_y.height = 20;
@@ -146,7 +143,7 @@ void init_ball() {
 
   // We might want to make a new one with a width equal to typical ball.dx value
   ball_old_loc_y = ball;
-	ball_old_loc_x.x = 170;
+  ball_old_loc_x.x = 170;
   ball_old_loc_x.width = 20;
   ball_old_loc_x.height = 20;
   ball_old_loc_x.bitmap = (unsigned char *)&pic_bg_ball_bmp;
@@ -163,9 +160,7 @@ void reset_board() {
 	init_player();
   os_mut_release(&mut_player);
 	
-	os_mut_wait(&mut_opponent, 0xffff);
 	init_opponent();
-  os_mut_release(&mut_opponent);
 
 	os_mut_wait(&mut_GLCD, 0xffff);
  	GLCD_Clear(Cyan);
@@ -204,6 +199,7 @@ void net_collision(object * b){
       b->y = ball_origin;
       b->t = b->t + b->dt;
       b->y = 0.5 * ball_g *b->t * b->t + b->dy * b->t + ball_origin;
+      draw_net = 1;
     }
 }
 /*
@@ -282,7 +278,6 @@ __task void adc_tsk (void) {
 		os_mut_release(&mut_GLCD);
 		
 		ball_g = base_ball_g + pot_val;
-
   }
 }
 
@@ -339,10 +334,7 @@ __task void player_tsk (void) {
       if ( player.x <=  player_left_limit){
         player.x = player_left_limit;
       }
-      // else {
-      //   player.dx = -10;
-      //   player.x += player.dx;
-      // }
+
       player_moved_x = 1;
     }
     else if ( (~KBD_val & KBD_RIGHT) && ( player.x < player_right_limit ) ){
@@ -363,11 +355,8 @@ __task void player_tsk (void) {
    	
     player_old_loc_y.y = player.y + player.height;
     
-    //os_mut_wait(&mut_GLCD, 0xffff);
-    //write_obect_lcd(player_old_loc_y);
-    //os_mut_release(&mut_GLCD);
-    
     os_mut_wait(&mut_GLCD, 0xffff);
+    write_obect_lcd(player_old_loc_y);
     write_obect_lcd(player);
     os_mut_release(&mut_GLCD);
 
@@ -401,18 +390,10 @@ __task void ball_tsk (void) {
     ball.t = ball.t + ball.dt;
     ball.y = 0.5 * ball_g * ball.t * ball.t + ball.dy * ball.t + ball_origin;
     ball.x += ball.dx;
-    /*if (ball.x + ball.width >= 320 && ball.dx > 0){
-        ball.x = x_max - ball.width;
-        ball.dx *= -1;
-    }
-    if (ball.x <= 0 && ball.dx < 0) {
-      ball.x = x_min;
-      ball.dx *= -1;
-    }*/
-    // check for collision with net
-    //net_collision(&ball); 
 
     collision_detected = 0;
+    op_collision_detected = 0;
+
     if ( ball.x > 165 ){ // half court = 155
       // check for collision with player
       
@@ -420,53 +401,21 @@ __task void ball_tsk (void) {
         os_mut_wait(&mut_player, 0xffff);
         collision_detected = detect_collision(ball, player);
        os_mut_release(&mut_player);
-      } else {//if (!collision_detected){
+      } else {
         collision_detected_before = 0;
       }
-      
-
+     
       if (collision_detected){
         collision_detected_before = 1;
-
         // collision detected update ball velocity
-
-        os_mut_wait(&mut_player, 0xffff);
         // update velocities
+        os_mut_wait(&mut_player, 0xffff);
         new_ball_vx = (((ball_mass - slime_mass) * ball.dx) + (2 * player.dx * ball_mass * slime_mass)) / (slime_mass + ball_mass);
-        //printf("%d\n", new_ball_vx);
         sx = player.x + 30;
         sy = player.y + 30;
         os_mut_release(&mut_player);  
-        bx = ball.x + ball_rad;
-        by = ball.y + ball_rad;
-        // Find Point of Collision and update ball Location
-        if ( new_ball_vx > 0 && sx > bx ){
-        	new_ball_vx *= -1;
-        }
-        c = sqrt((sy - by) * (sy - by) +  (sx - bx) * (sx - bx));
-        new_ball_y = sy - (30 + ball_rad) * ( (sy-by) / c );
-        
-        if (bx > sx){
-          new_ball_x = sx + (30 + ball_rad)*( (bx-sx) / c  );
-        }
-        else if (sx > bx){
-          new_ball_x = sx - (30 + ball_rad)*( (sx-bx) / c  );
-        }
-        else {
-        	new_ball_x = sx;
-        }
-        // Make sure no boundaries were crossed after collision
-        if (new_ball_x + ball_rad >= 320){
-        	new_ball_x = 320 - ball_rad; 
-        }
-        
-        ball.y = new_ball_y - ball_rad;
-        ball.x = new_ball_x - ball_rad;
-        ball.dx = new_ball_vx;
-        ball_origin = ball.y;
-        ball.t = 0;
+     
 
-        //net_collision(&ball);
       }
       // check for ai scoring
       if ( ball.y + ball.height > 240 && !collision_detected){
@@ -478,59 +427,9 @@ __task void ball_tsk (void) {
         continue;
       }
     }
-    
-    else if ( ball.x < 155 ) {
-
-      // check for collision with opponent
-
-
-      if ( !op_collision_detected_before ){
-        os_mut_wait(&mut_opponent, 0xffff);
-        op_collision_detected = detect_collision(ball, opponent);
-       os_mut_release(&mut_opponent);
-      } else {//if (!collision_detected){
-        op_collision_detected_before = 0;
-      }
-
-      if (op_collision_detected) {
-
-        // locate point of collision
-        //ball.t = 0;
-      }
-      // check if player scored
-      else if (ball.y + ball.height >= 240){  
-        ball.y = 240 - ball.height;
-        os_mut_release(&mut_ball);
-        score_player();
-        continue;
-      }
-    }
-
-    // upate location of ball if boundaries were hit
-    if (ball.x + ball.width >= 320 && ball.dx > 0){
-        ball.x = x_max - ball.width;
-        ball.dx *= -1;
-    }
-    if (ball.x <= 0 && ball.dx < 0) {
-      ball.x = x_min;
-      ball.dx *= -1;
-    }
-
-    if ( ball.y <= y_min  && ball.dy < 0) {
-      ball.t = 0;
-      ball.y = y_min;
-      ball_origin = y_min;
-      ball.dy *= -1;
-      
-    }
-    net_collision(&ball);
-
-    // this is temporary we should be able to draw bitmaps that have dimensions of height = ball.dy, width = ball.width
-    if (ball.y < ball_old_loc_y.y) {
-      ball_old_loc_y.y = ball.y + ball.height;
-    }
 
     /**********************************************/
+    // Update location of opponent
     opponent_old_loc_x.x = opponent.x;
     if (ball.x < 155){
     	opponent_moved = 1;
@@ -554,31 +453,122 @@ __task void ball_tsk (void) {
     	if (opponent.x + opponent.width > court_net.x){
     		opponent.x = court_net.x - opponent.width;
     	}
-    	os_mut_wait(mut_GLCD, 0xffff);
+    	/*os_mut_wait(mut_GLCD, 0xffff);
     	write_obect_lcd(opponent_old_loc_x);
     	write_obect_lcd(opponent);
-    	os_mut_release(mut_GLCD);
+    	os_mut_release(mut_GLCD);*/
    	}
+
    	/**********************************************/
 
-    // Draw Ball
+    if ( ball.x < 155 ) {
+
+      // check for collision with opponent
+      if ( !op_collision_detected_before ){
+    
+        op_collision_detected = detect_collision(ball, opponent);
+   
+      } 
+      else {
+        op_collision_detected_before = 0;
+      }
+
+      if (op_collision_detected) {
+
+        op_collision_detected_before = 1;
+      	new_ball_vx = (((ball_mass - slime_mass) * ball.dx) + (2 * opponent.dx * ball_mass * slime_mass)) / (slime_mass + ball_mass);
+        sx = opponent.x + 30;
+        sy = opponent.y + 30;
+      }
+      // check if player scored
+      else if (ball.y + ball.height > 240 && !op_collision_detected ){  
+        ball.y = 240 - ball.height;
+        os_mut_release(&mut_ball);
+        score_player();
+        continue;
+      }
+    }
+
+    /**********************************************/
+    // Check for collisions with walls and court net
+    if ( op_collision_detected || collision_detected ){
+    	bx = ball.x + ball_rad;
+        by = ball.y + ball_rad;
+    	if ( collision_detected && new_ball_vx > 0 && sx > bx ){
+    		new_ball_vx *= -1;
+    	}
+    	if ( op_collision_detected && new_ball_vx > 0 && sx < bx ){
+    		new_ball_vx *= -1;
+    	}
+
+    	c = sqrt((sy - by) * (sy - by) +  (sx - bx) * (sx - bx));
+    	new_ball_y = sy - (30 + ball_rad) * ( (sy-by) / c );
+    	
+    	if (bx > sx){
+    	  new_ball_x = sx + (30 + ball_rad)*( (bx-sx) / c  );
+    	}
+    	else if (sx > bx){
+    	  new_ball_x = sx - (30 + ball_rad)*( (sx-bx) / c  );
+    	}
+    	else {
+    		new_ball_x = sx;
+    	}
+    	// Make sure no boundaries were crossed after collision
+    	if (new_ball_x + ball_rad >= 320){
+    		new_ball_x = 320 - ball_rad; 
+    	}
+    	ball.y = new_ball_y - ball_rad;
+    	ball.x = new_ball_x - ball_rad;
+    	ball.dx = new_ball_vx;
+    	ball_origin = ball.y;
+    	ball.t = 0;
+    }
+
+    /**********************************************/
+
+    /**********************************************/
+    // upate location of ball if boundaries were hit
+    if (ball.x + ball.width > 320 && ball.dx > 0){
+        ball.x = x_max - ball.width;
+        ball.dx *= -1;
+    }
+    if (ball.x < 0 && ball.dx < 0) {
+      ball.x = 0;
+      ball.dx *= -1;
+    }
+
+    if ( ball.y < y_min  && ball.dy < 0) {
+      ball.t = 0;
+      ball.y = y_min;
+      ball_origin = y_min;
+      ball.dy *= -1;
+      
+    }
+    net_collision(&ball);
+    /**********************************************/
+
+
+    // Draw Ball and Opponent
     os_mut_wait(&mut_GLCD, 0xffff);
+
     write_obect_lcd(ball_old_loc_y);
     write_obect_lcd(ball_old_loc_x);
     write_obect_lcd(ball);
-    // Draw net if ball collided with net
-    if (draw_net) {
-      write_obect_lcd(court_net);
-    }
+    write_obect_lcd(opponent_old_loc_x);
+    write_obect_lcd(court_net);
+    write_obect_lcd(opponent);
+
+    os_mut_release(mut_GLCD);
+
     // Redraw both slimes if collision occured
-    if (collision_detected || op_collision_detected){
+    if ( collision_detected ){
+
+      os_mut_wait(&mut_GLCD, 0xffff);
       os_mut_wait(&mut_player, 0xffff);
       write_obect_lcd(player);
       os_mut_release(&mut_player);
-
-      write_obect_lcd(opponent);
+      os_mut_release(&mut_GLCD);
     }
-    os_mut_release(&mut_GLCD);
     os_mut_release(&mut_ball);
 
   }
@@ -626,8 +616,7 @@ int main (void) {
   init_ball();
 	
   // Inital x and y values are kind of arbitrary and can be changed if need be
-  //ai_left_limit = x_min;
-  //ai_right_limit = x_court_net;
+
   player_left_limit = x_court_net + 10;
   player_right_limit = 320 - width_player_bmp;
   player_high_limit = 210;
