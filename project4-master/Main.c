@@ -95,6 +95,7 @@ unsigned int ADCStat = 0;
 unsigned int ADCValue = 0;
 uint32_t INT0_val = 0;
 
+
 void init_player() {
   player.x = 240; 
   //player.x = player.x  - 60; // subtract 60 so player starts in the middle
@@ -188,6 +189,19 @@ void reset_board() {
 	os_mut_release(&mut_GLCD);
 }
 
+void reset_game (void){
+	curr_score.opponent = 0;
+	curr_score.player = 0;
+	LED_Out(0);
+	os_mut_wait(&mut_GLCD, 0xffff);
+	GLCD_SetBackColor(Blue);
+  GLCD_SetTextColor(White);
+  GLCD_DisplayString(0, 0, __FI, "     Game Over      ");
+	os_mut_release(&mut_GLCD);
+	reset_board();
+}
+
+
 void net_collision(object * b){
 	// check for collision with net
     if ( b->x >= 160 && b->x - court_net.x < court_net.width && b->y > court_net.y && b->dx < 0){
@@ -234,7 +248,7 @@ void score_player() {
 	os_mut_wait(&mut_curr_score, 0xffff);
 	
 	if(curr_score.player == 4) {
-		// TODO: End game
+		reset_game();
 	} else {
 		(curr_score.player)++;
 		LED_On(curr_score.player);
@@ -249,7 +263,7 @@ void score_opponent() {
 	os_mut_wait(&mut_curr_score, 0xffff);
 	
 	if(curr_score.opponent == 4) {
-		// TODO: End game
+		reset_game();
 	} else {
 		(curr_score.opponent)++;
 		LED_On(8 - curr_score.opponent);
