@@ -19,16 +19,6 @@
 
 #define __FI        1                   /* Font index 16x24                  */
 
-OS_TID t_led;                           /* assigned task id of task: led */
-OS_TID t_adc;                           /* assigned task id of task: adc */
-OS_TID t_kbd;                           /* assigned task id of task: keyread */
-OS_TID t_jst   ;                        /* assigned task id of task: joystick */
-OS_TID t_clock;                         /* assigned task id of task: clock   */
-OS_TID t_lcd;                           /* assigned task id of task: lcd     */
-OS_TID t_player;                        /* assigned task id of task: player     */
-OS_TID t_opponent;                      /* assigned task id of task: opponent     */
-OS_TID t_ball;                          /* assigned task id of task: ball    */
-
 OS_MUT mut_GLCD;                        /* Mutex to controll GLCD access     */
 
 // court vars
@@ -106,14 +96,12 @@ void init_player() {
   player.t = 0;
   player.bitmap = (unsigned char *)&pic_player8_bmp;
 
-  player_old_loc_x.x = player.x;
-  player_old_loc_x.y = player.y;
+  player_old_loc_x = player;
   player_old_loc_x.width = 10;
   player_old_loc_x.height = 30;
   player_old_loc_x.bitmap = (unsigned char *)&pic_bg_height_bmp;
 
-  player_old_loc_y.x = player.x;
-  player_old_loc_y.y = player.y;
+  player_old_loc_y = player;
   player_old_loc_y.width = 60;
   player_old_loc_y.height = 20;
   player_old_loc_y.bitmap = (unsigned char *)&pic_bg_wide_bmp;
@@ -150,25 +138,17 @@ void init_ball() {
   ball.bitmap = (unsigned char *)&pic_ball6_bmp;
   ball_origin = y_max - ball.height;
 
+	ball_old_loc_y = ball;
   ball_old_loc_y.x = 170;
-  ball_old_loc_y.y = ball.y;
   ball_old_loc_y.width = 20;
   ball_old_loc_y.height = 20;
-  ball_old_loc_y.dx = ball.dx;
-  ball_old_loc_y.dy = ball.dy;
-  ball_old_loc_y.dt = ball.dt;
-  ball_old_loc_y.t = ball.t;
   ball_old_loc_y.bitmap = (unsigned char *)&pic_bg_ball_bmp;
 
   // We might want to make a new one with a width equal to typical ball.dx value
-  ball_old_loc_x.x = 170;
-  ball_old_loc_x.y = player.y;
+  ball_old_loc_y = ball;
+	ball_old_loc_x.x = 170;
   ball_old_loc_x.width = 20;
   ball_old_loc_x.height = 20;
-  ball_old_loc_x.dx = ball.dx;
-  ball_old_loc_x.dy = ball.dy;
-  ball_old_loc_x.dt = ball.dt;
-  ball_old_loc_x.t = ball.t;
   ball_old_loc_x.bitmap = (unsigned char *)&pic_bg_ball_bmp;
 }
 
@@ -197,11 +177,11 @@ void reset_game (void){
 	curr_score.opponent = 0;
 	curr_score.player = 0;
 	LED_Out(0);
-	os_mut_wait(&mut_GLCD, 0xffff);
-	GLCD_SetBackColor(Blue);
-  GLCD_SetTextColor(White);
-  GLCD_DisplayString(0, 0, __FI, "     Game Over      ");
-	os_mut_release(&mut_GLCD);
+// 	os_mut_wait(&mut_GLCD, 0xffff);
+// 	GLCD_SetBackColor(Blue);
+//   GLCD_SetTextColor(White);
+//   GLCD_DisplayString(0, 0, __FI, "Game Over");
+// 	os_mut_release(&mut_GLCD);
 	reset_board();
 }
 
@@ -282,11 +262,28 @@ void score_opponent() {
  *---------------------------------------------------------------------------*/
 /*Value from potentiometer is used to define the pace of the game*/
 __task void adc (void) {
+	int pot_val = 0;
+	char * str = "Speed: 0000\n";
   // 0 - 4095
 
   for (;;) {
-
     os_dly_wait (400);
+		pot_val = (LPC_ADC->ADGDR >> 4) & 0xFFF;
+		
+		os_mut_wait(&mut_player, 0xffff);
+		slime_mass = pot_val / 500;
+		opponent.x = pot_val;
+		os_mut_release(&mut_player);
+		
+		str[7]  = (pot_val / 1000) % 10;
+		str[8]  = (pot_val / 100 ) % 10;
+		str[9]  = (pot_val / 10  ) % 10;
+		str[10] = (pot_val / 1   ) % 10;
+		os_mut_wait(&mut_GLCD, 0xffff);
+		GLCD_SetTextColor(Black);
+		GLCD_DisplayString(0, 0, __FI, (unsigned char *)str);
+		os_mut_release(&mut_GLCD);
+		
   }
 }
 
@@ -602,8 +599,9 @@ __task void init (void) {
   os_mut_init(&mut_curr_score);
   os_mut_init(&mut_ball);
 
-  t_player   = os_tsk_create(player_tsk, 0);
-  t_ball     = os_tsk_create(ball_tsk, 0);
+  os_tsk_create(player_tsk, 0);
+  os_tsk_create(ball_tsk, 0);
+
 
   os_tsk_delete_self ();
 }
