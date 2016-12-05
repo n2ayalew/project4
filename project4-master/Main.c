@@ -611,6 +611,10 @@ int main (void) {
   court_net.bitmap = (unsigned char *)&pic_court_net6_bmp;
   court_net.dx = 0;
   court_net.dy = 0;
+	
+  // Initialize score
+  curr_score.player = 0;
+  curr_score.opponent = 0;
 
   slime_mass = 3;
   ball_mass = 1;
