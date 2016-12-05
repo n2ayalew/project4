@@ -25,7 +25,6 @@ OS_TID t_kbd;                           /* assigned task id of task: keyread */
 OS_TID t_jst   ;                        /* assigned task id of task: joystick */
 OS_TID t_clock;                         /* assigned task id of task: clock   */
 OS_TID t_lcd;                           /* assigned task id of task: lcd     */
-OS_TID t_keyread;
 OS_TID t_player;                        /* assigned task id of task: player     */
 OS_TID t_opponent;                      /* assigned task id of task: opponent     */
 OS_TID t_ball;                          /* assigned task id of task: ball    */
@@ -571,7 +570,6 @@ __task void init (void) {
   t_player   = os_tsk_create(player_tsk, 0);
   t_opponent = os_tsk_create(opponent_tsk, 0);
   t_ball     = os_tsk_create(ball_tsk, 0);
-  t_keyread  = os_tsk_create(keyread,0);
 
   os_tsk_delete_self ();
 }
